@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO + Branding -->
+<title>Life in Holy Bible | The Living Word of God</title>
+<meta name="description" content="Life in Holy Bible – A sacred space to read, search, meditate, and grow through the eternal Word of God.">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== COLOR SYSTEM ===== */
+:root {
+    --gold: #d4af37;
+    --dark: #0b0b12;
+    --soft: #161625;
+    --text: #e8e8e8;
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at top, #26263d, #0b0b12 70%);
+    color: var(--text);
+}
+
+/* ===== NAVBAR ===== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,20,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+.brand span {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+nav ul li a:hover {
+    color: var(--gold);
+}
+
+/* ===== HERO ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.hero h3 {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    max-width: 720px;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    opacity: 0.9;
+}
+
+/* ===== QUOTE ===== */
+.quote {
+    padding: 120px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent, #141424);
+}
+
+.quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.quote span {
+    display: block;
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--gold);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+    padding: 110px 60px;
+}
+
+.section h3 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+/* ===== EVENTS ===== */
+.news {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,0.04);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.card h4 {
+    color: var(--gold);
+    margin-bottom: 12px;
+    font
