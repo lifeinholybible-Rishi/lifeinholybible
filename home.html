@@ -12,32 +12,84 @@
 <style>
 html { scroll-behavior: smooth; }
 
-/* 🌈 CELESTIAL COLOR SYSTEM */
+/* ================= THEME VARIABLES ================= */
 :root {
-  --gold: #ffd369;
-  --sky-blue: #6ec6ff;
-  --deep-blue: #0b1d3a;
-  --aurora: #7f7fd5;
-  --cloud: #f5f7ff;
-  --text: #eef3ff;
+  --gold:#ffd369;
+  --text:#eef3ff;
+  --bg1:#1a3a6e;
+  --bg2:#0b1d3a;
+  --overlay:rgba(255,255,255,0.08);
 }
 
-/* RESET */
+/* NIGHT MODE */
+body.night {
+  --bg1:#050814;
+  --bg2:#02040c;
+  --overlay:rgba(255,255,255,0.04);
+}
+
+/* ================= RESET ================= */
 * { margin:0; padding:0; box-sizing:border-box; }
 
-/* 🌌 SKY BACKGROUND */
+/* ================= SKY BACKGROUND ================= */
 body {
   font-family:'Montserrat',sans-serif;
   color:var(--text);
   background:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,0.15), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(127,127,213,0.25), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(110,198,255,0.25), transparent 50%),
-    linear-gradient(180deg, #1a3a6e 0%, #0b1d3a 45%, #060b1a 100%);
+    radial-gradient(circle at 30% 10%, rgba(255,255,255,0.12), transparent 40%),
+    radial-gradient(circle at 70% 20%, rgba(127,127,213,0.2), transparent 45%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
   background-attachment: fixed;
+  overflow-x:hidden;
 }
 
-/* ✨ NAVBAR */
+/* ================= CLOUDS ================= */
+.clouds::before,
+.clouds::after {
+  content:"";
+  position:fixed;
+  top:0;
+  left:-50%;
+  width:200%;
+  height:100%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 40%),
+    radial-gradient(circle at 60% 40%, rgba(255,255,255,0.06), transparent 45%),
+    radial-gradient(circle at 80% 25%, rgba(255,255,255,0.05), transparent 35%);
+  animation: floatClouds 180s linear infinite;
+  pointer-events:none;
+}
+.clouds::after {
+  animation-duration: 240s;
+  opacity:.6;
+}
+
+@keyframes floatClouds {
+  from { transform: translateX(0); }
+  to { transform: translateX(25%); }
+}
+
+/* ================= STARS ================= */
+.stars {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 30% 40%, white, transparent),
+    radial-gradient(1px 1px at 70% 30%, white, transparent),
+    radial-gradient(1px 1px at 90% 80%, white, transparent);
+  opacity:0;
+  animation: twinkle 6s ease-in-out infinite;
+  pointer-events:none;
+}
+body.night .stars { opacity:.8; }
+
+@keyframes twinkle {
+  0%,100% { opacity:.4; }
+  50% { opacity:.8; }
+}
+
+/* ================= NAVBAR ================= */
 nav {
   position:fixed;
   top:0;
@@ -46,81 +98,78 @@ nav {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(5,15,40,0.65);
-  backdrop-filter: blur(10px);
+  background:rgba(5,10,30,0.6);
+  backdrop-filter:blur(10px);
   z-index:1000;
 }
 
 .brand h1 {
   font-family:'Playfair Display',serif;
-  font-size:1.5rem;
   color:var(--gold);
 }
 .brand span {
-  font-size:.7rem;
+  font-size:.65rem;
   letter-spacing:2px;
-  opacity:.85;
+  opacity:.8;
 }
 
 nav ul {
   list-style:none;
   display:flex;
-  gap:30px;
+  gap:28px;
 }
 nav ul li a {
   text-decoration:none;
-  color:var(--cloud);
+  color:var(--text);
   font-size:14px;
 }
 nav ul li a:hover { color:var(--gold); }
 
-/* 🌤️ HERO */
+/* TOGGLE */
+.toggle {
+  cursor:pointer;
+  font-size:14px;
+  border:1px solid var(--gold);
+  padding:6px 12px;
+  border-radius:20px;
+  color:var(--gold);
+}
+
+/* ================= HERO ================= */
 .hero {
   height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
   padding:0 20px;
+  position:relative;
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(255,211,105,0.25), transparent 55%);
 }
 
 .hero h2 {
   font-family:'Playfair Display',serif;
-  font-size:3.4rem;
+  font-size:3.5rem;
   color:var(--gold);
-  text-shadow:0 0 20px rgba(255,211,105,0.35);
+  text-shadow:0 0 30px rgba(255,211,105,0.35);
 }
 .hero h3 {
-  margin:18px 0 28px;
-  font-size:1rem;
+  margin:20px 0 30px;
   letter-spacing:4px;
-  opacity:.9;
 }
 .hero p {
   max-width:720px;
-  font-size:1.15rem;
   line-height:1.9;
 }
 
-/* 🌅 DAILY VERSE */
-.daily-verse {
-  padding:100px 20px;
-  text-align:center;
-  background:
-    linear-gradient(180deg, transparent, rgba(255,255,255,0.05));
-}
-.daily-verse h3 {
-  font-family:'Playfair Display',serif;
-  color:var(--gold);
-  margin-bottom:25px;
-}
-.daily-verse p {
-  max-width:850px;
-  margin:auto;
-  font-size:1.35rem;
-}
-
-/* 🌟 SECTIONS */
+/* ================= SECTIONS ================= */
 .section {
   padding:120px 60px;
 }
@@ -128,51 +177,34 @@ nav ul li a:hover { color:var(--gold); }
   text-align:center;
   font-family:'Playfair Display',serif;
   color:var(--gold);
-  font-size:2.1rem;
   margin-bottom:55px;
 }
 
-/* ☁️ CARDS */
-.news, .books {
+/* ================= CARDS ================= */
+.news, .books, .steps {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:35px;
 }
 
 .card, .book, .step {
-  background:rgba(255,255,255,0.08);
-  backdrop-filter: blur(6px);
+  background:var(--overlay);
   padding:32px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(6px);
 }
 
-.card h4, .book h4 {
-  font-family:'Playfair Display',serif;
-  color:var(--gold);
-  margin-bottom:12px;
-}
-
-/* 🕊️ HOW TO USE */
-.steps {
-  max-width:900px;
-  margin:auto;
-  display:grid;
-  gap:30px;
-}
-
-/* 🌙 FOOTER */
+/* ================= FOOTER ================= */
 footer {
   text-align:center;
   padding:45px;
-  font-size:.85rem;
   opacity:.85;
 }
 
-/* 📱 MOBILE */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   nav { padding:15px 25px; }
-  nav ul { gap:15px; }
+  nav ul { gap:14px; }
   .hero h2 { font-size:2.4rem; }
   .section { padding:90px 25px; }
 }
@@ -180,6 +212,8 @@ footer {
 </head>
 
 <body>
+<div class="clouds"></div>
+<div class="stars"></div>
 
 <nav>
   <div class="brand">
@@ -187,11 +221,11 @@ footer {
     <span>THE LIVING WORD OF GOD</span>
   </div>
   <ul>
-    <li><a href="home.html">Home</a></li>
     <li><a href="#events">Events</a></li>
     <li><a href="books.html">Books</a></li>
     <li><a href="bible.html">Search</a></li>
     <li><a href="#how">How to Use</a></li>
+    <li><span class="toggle" onclick="toggleMode()">🌗</span></li>
   </ul>
 </nav>
 
@@ -200,52 +234,28 @@ footer {
     <h2>Life in Holy Bible</h2>
     <h3>THE LIVING WORD OF GOD</h3>
     <p>
-      Enter a sacred digital space where Scripture meets reflection,
-      peace, and the light of God’s eternal Word.
+      Enter a sacred digital space where Scripture,
+      reflection, and divine peace meet.
     </p>
   </div>
-</section>
-
-<section class="daily-verse">
-  <h3>Daily Scripture</h3>
-  <p id="verseText"></p>
 </section>
 
 <section id="events" class="section">
   <h3>Events & News</h3>
   <div class="news">
-    <div class="card">
-      <h4>Weekly Bible Study</h4>
-      <p>Every Sunday – Scripture meditation under God’s presence.</p>
-    </div>
-    <div class="card">
-      <h4>Prayer & Fellowship</h4>
-      <p>Gathering hearts in unity and prayer.</p>
-    </div>
-    <div class="card">
-      <h4>Devotional Series</h4>
-      <p>A guided journey through Psalms.</p>
-    </div>
+    <div class="card">Weekly Bible Study</div>
+    <div class="card">Prayer & Fellowship</div>
+    <div class="card">Devotional Journey</div>
   </div>
 </section>
 
 <section id="how" class="section">
   <h3>How to Use This Website</h3>
   <div class="steps">
-    <div class="step">📖 Search Scriptures instantly.</div>
-    <div class="step">📚 Read Bible books peacefully.</div>
-    <div class="step">🕯️ Reflect daily with Scripture.</div>
-    <div class="step">🙏 Meditate and grow spiritually.</div>
-  </div>
-</section>
-
-<section class="section">
-  <h3>Books of the Bible</h3>
-  <div class="books">
-    <div class="book"><h4>Genesis</h4></div>
-    <div class="book"><h4>Psalms</h4></div>
-    <div class="book"><h4>Proverbs</h4></div>
-    <div class="book"><h4>Gospels</h4></div>
+    <div class="step">📖 Search Scriptures</div>
+    <div class="step">📚 Read Bible Books</div>
+    <div class="step">🕯️ Daily Reflection</div>
+    <div class="step">🙏 Meditate & Pray</div>
   </div>
 </section>
 
@@ -254,14 +264,14 @@ footer {
 </footer>
 
 <script>
-const verses = [
-  "Psalm 119:105 — Your word is a lamp to my feet and a light to my path.",
-  "John 1:5 — The light shines in the darkness, and the darkness has not overcome it.",
-  "Isaiah 60:1 — Arise, shine, for your light has come.",
-  "Revelation 21:23 — The glory of God gives it light."
-];
-document.getElementById("verseText").innerText =
-  verses[new Date().getDate() % verses.length];
+function toggleMode(){
+  document.body.classList.toggle("night");
+  localStorage.setItem("mode",
+    document.body.classList.contains("night") ? "night" : "day");
+}
+if(localStorage.getItem("mode")==="night"){
+  document.body.classList.add("night");
+}
 </script>
 
 </body>
