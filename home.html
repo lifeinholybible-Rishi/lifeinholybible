@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -170,4 +170,133 @@ nav ul li a:hover {
 .card h4 {
     color: var(--gold);
     margin-bottom: 12px;
-    font
+    font-family: 'Playfair Display', serif;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===== HOW TO USE ===== */
+.steps {
+    max-width: 900px;
+    margin: auto;
+    display: grid;
+    gap: 25px;
+}
+
+.step {
+    background: rgba(255,255,255,0.04);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+/* ===== BOOKS ===== */
+.books {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.book {
+    background: rgba(255,255,255,0.04);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.book h4 {
+    margin-top: 10px;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="brand">
+        <h1>Life in Holy Bible</h1>
+        <span>THE LIVING WORD OF GOD</span>
+    </div>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="#events">Events / News</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="bible.html">Search</a></li>
+        <li><a href="#how">How to Use</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div>
+        <h2>Life in Holy Bible</h2>
+        <h3>THE LIVING WORD OF GOD</h3>
+        <p>
+            A sacred space to read, search, meditate, and grow through
+            the eternal truth of the Holy Scriptures.
+        </p>
+    </div>
+</section>
+
+<section class="quote">
+    <blockquote>
+        “Your word is a lamp to my feet and a light to my path.”
+        <span>Psalm 119:105</span>
+    </blockquote>
+</section>
+
+<section id="events" class="section">
+    <h3>Events & News</h3>
+    <div class="news">
+        <div class="card">
+            <h4>Weekly Bible Study</h4>
+            <p>Sunday evenings dedicated to Scripture meditation and teaching.</p>
+        </div>
+        <div class="card">
+            <h4>Prayer & Fellowship</h4>
+            <p>A gathering of prayer, faith, and unity in Christ.</p>
+        </div>
+        <div class="card">
+            <h4>Upcoming Devotional Series</h4>
+            <p>Journey through Psalms with daily reflections.</p>
+        </div>
+    </div>
+</section>
+
+<section id="how" class="section">
+    <h3>How to Use This Website</h3>
+    <div class="steps">
+        <div class="step">📖 Use <b>Search</b> to find Bible chapters and verses.</div>
+        <div class="step">📚 Explore <b>Books</b> to read Scripture book by book.</div>
+        <div class="step">🕯️ Visit regularly for spiritual updates and studies.</div>
+        <div class="step">🙏 Read slowly, meditate, and reflect on God’s Word.</div>
+    </div>
+</section>
+
+<section class="section">
+    <h3>Books of the Bible</h3>
+    <div class="books">
+        <div class="book"><h4>Genesis</h4></div>
+        <div class="book"><h4>Psalms</h4></div>
+        <div class="book"><h4>Proverbs</h4></div>
+        <div class="book"><h4>Gospels</h4></div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Life in Holy Bible · Walking in His Word
+</footer>
+
+</body>
+</html>
