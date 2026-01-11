@@ -1,223 +1,190 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO + Branding -->
-<title>Life in Holy Bible | The Living Word of God</title>
-<meta name="description" content="Life in Holy Bible – A sacred space to read, search, meditate, and grow through the eternal Word of God.">
+<!-- SEO -->
+<title>Life in Holy Bible | Read, Search & Meditate on God’s Word</title>
+<meta name="description" content="Life in Holy Bible is a sacred place to read, search, and meditate on the Holy Scriptures. Discover daily Bible verses, books, and spiritual guidance.">
+<meta name="keywords" content="Holy Bible, Bible verses, Christian scripture, Bible study, Life in Holy Bible">
+<meta name="robots" content="index, follow">
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* ===== COLOR SYSTEM ===== */
 :root {
-    --gold: #d4af37;
-    --dark: #0b0b12;
-    --soft: #161625;
-    --text: #e8e8e8;
+  --gold:#d4af37;
+  --dark:#0b0b12;
+  --soft:#161625;
+  --text:#e8e8e8;
 }
 
-/* ===== RESET ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
-/* ===== BODY ===== */
 body {
-    font-family: 'Montserrat', sans-serif;
-    background: radial-gradient(circle at top, #26263d, #0b0b12 70%);
-    color: var(--text);
+  font-family:'Montserrat',sans-serif;
+  background:radial-gradient(circle at top,#26263d,#0b0b12 70%);
+  color:var(--text);
 }
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 18px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,20,0.85);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-}
-
-.brand {
-    display: flex;
-    flex-direction: column;
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(10,10,20,.85);
+  backdrop-filter:blur(8px);
+  z-index:1000;
 }
 
 .brand h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--gold);
-    letter-spacing: 1px;
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;
+  color:var(--gold);
 }
-
 .brand span {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    opacity: 0.7;
+  font-size:.65rem;
+  letter-spacing:2px;
+  opacity:.7;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
+  list-style:none;
+  display:flex;
+  gap:30px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: var(--text);
-    font-size: 14px;
-    letter-spacing: 1px;
+  text-decoration:none;
+  color:var(--text);
+  font-size:14px;
 }
+nav ul li a:hover { color:var(--gold); }
 
-nav ul li a:hover {
-    color: var(--gold);
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 20px;
 }
 
 .hero h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.2rem;
-    color: var(--gold);
-    margin-bottom: 15px;
+  font-family:'Playfair Display',serif;
+  font-size:3.2rem;
+  color:var(--gold);
 }
-
 .hero h3 {
-    font-size: 1rem;
-    letter-spacing: 3px;
-    font-weight: 300;
-    opacity: 0.85;
-    margin-bottom: 25px;
+  margin:15px 0 25px;
+  font-size:1rem;
+  letter-spacing:3px;
+  opacity:.85;
 }
-
 .hero p {
-    max-width: 720px;
-    font-size: 1.1rem;
-    line-height: 1.9;
-    opacity: 0.9;
+  max-width:720px;
+  font-size:1.1rem;
+  line-height:1.9;
 }
 
-/* ===== QUOTE ===== */
-.quote {
-    padding: 120px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, transparent, #141424);
+/* DAILY VERSE */
+.daily-verse {
+  padding:90px 20px;
+  text-align:center;
+  background:linear-gradient(180deg,transparent,#141424);
+}
+.daily-verse h3 {
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  margin-bottom:25px;
+}
+.daily-verse p {
+  max-width:800px;
+  margin:auto;
+  font-size:1.3rem;
 }
 
-.quote blockquote {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    max-width: 800px;
-    margin: auto;
-}
-
-.quote span {
-    display: block;
-    margin-top: 18px;
-    font-size: 0.9rem;
-    color: var(--gold);
-}
-
-/* ===== SECTIONS ===== */
-.section {
-    padding: 110px 60px;
-}
-
+/* SECTIONS */
+.section { padding:110px 60px; }
 .section h3 {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 2rem;
-    margin-bottom: 50px;
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  font-size:2rem;
+  margin-bottom:50px;
 }
 
-/* ===== EVENTS ===== */
+/* EVENTS */
 .news {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
-
 .card {
-    background: rgba(255,255,255,0.04);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,.04);
+  padding:30px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
 }
-
 .card h4 {
-    color: var(--gold);
-    margin-bottom: 12px;
-    font-family: 'Playfair Display', serif;
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  margin-bottom:10px;
 }
 
-.card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* ===== HOW TO USE ===== */
+/* HOW TO USE */
 .steps {
-    max-width: 900px;
-    margin: auto;
-    display: grid;
-    gap: 25px;
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  gap:25px;
 }
-
 .step {
-    background: rgba(255,255,255,0.04);
-    padding: 30px;
-    border-radius: 12px;
+  background:rgba(255,255,255,.04);
+  padding:30px;
+  border-radius:12px;
 }
 
-/* ===== BOOKS ===== */
+/* BOOKS */
 .books {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:25px;
 }
-
 .book {
-    background: rgba(255,255,255,0.04);
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
+  background:rgba(255,255,255,.04);
+  padding:25px;
+  border-radius:10px;
+  text-align:center;
 }
-
 .book h4 {
-    margin-top: 10px;
-    color: var(--gold);
-    font-family: 'Playfair Display', serif;
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 0.8rem;
-    opacity: 0.7;
+  text-align:center;
+  padding:40px;
+  font-size:.8rem;
+  opacity:.7;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav { padding:15px 25px; }
+  nav ul { gap:15px; }
+  .hero h2 { font-size:2.3rem; }
+  .section { padding:80px 25px; }
 }
 </style>
 </head>
@@ -225,78 +192,88 @@ footer {
 <body>
 
 <nav>
-    <div class="brand">
-        <h1>Life in Holy Bible</h1>
-        <span>THE LIVING WORD OF GOD</span>
-    </div>
-    <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="#events">Events / News</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="bible.html">Search</a></li>
-        <li><a href="#how">How to Use</a></li>
-    </ul>
+  <div class="brand">
+    <h1>Life in Holy Bible</h1>
+    <span>THE LIVING WORD OF GOD</span>
+  </div>
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="bible.html">Search</a></li>
+    <li><a href="#how">How to Use</a></li>
+  </ul>
 </nav>
 
 <section class="hero">
-    <div>
-        <h2>Life in Holy Bible</h2>
-        <h3>THE LIVING WORD OF GOD</h3>
-        <p>
-            A sacred space to read, search, meditate, and grow through
-            the eternal truth of the Holy Scriptures.
-        </p>
-    </div>
+  <div>
+    <h2>Life in Holy Bible</h2>
+    <h3>THE LIVING WORD OF GOD</h3>
+    <p>
+      A sacred space to read, search, meditate, and grow
+      through the eternal truth of the Holy Scriptures.
+    </p>
+  </div>
 </section>
 
-<section class="quote">
-    <blockquote>
-        “Your word is a lamp to my feet and a light to my path.”
-        <span>Psalm 119:105</span>
-    </blockquote>
+<section class="daily-verse">
+  <h3>Daily Scripture</h3>
+  <p id="verseText"></p>
 </section>
 
 <section id="events" class="section">
-    <h3>Events & News</h3>
-    <div class="news">
-        <div class="card">
-            <h4>Weekly Bible Study</h4>
-            <p>Sunday evenings dedicated to Scripture meditation and teaching.</p>
-        </div>
-        <div class="card">
-            <h4>Prayer & Fellowship</h4>
-            <p>A gathering of prayer, faith, and unity in Christ.</p>
-        </div>
-        <div class="card">
-            <h4>Upcoming Devotional Series</h4>
-            <p>Journey through Psalms with daily reflections.</p>
-        </div>
+  <h3>Events & News</h3>
+  <div class="news">
+    <div class="card">
+      <h4>Weekly Bible Study</h4>
+      <p>Every Sunday evening – Scripture meditation and teaching.</p>
     </div>
+    <div class="card">
+      <h4>Prayer & Fellowship</h4>
+      <p>Monthly prayer gathering for faith and unity.</p>
+    </div>
+    <div class="card">
+      <h4>Devotional Series</h4>
+      <p>A guided journey through Psalms.</p>
+    </div>
+  </div>
 </section>
 
 <section id="how" class="section">
-    <h3>How to Use This Website</h3>
-    <div class="steps">
-        <div class="step">📖 Use <b>Search</b> to find Bible chapters and verses.</div>
-        <div class="step">📚 Explore <b>Books</b> to read Scripture book by book.</div>
-        <div class="step">🕯️ Visit regularly for spiritual updates and studies.</div>
-        <div class="step">🙏 Read slowly, meditate, and reflect on God’s Word.</div>
-    </div>
+  <h3>How to Use This Website</h3>
+  <div class="steps">
+    <div class="step">📖 Use <b>Search</b> to find Bible verses instantly.</div>
+    <div class="step">📚 Explore <b>Books</b> to read Scripture book by book.</div>
+    <div class="step">🕯️ Reflect daily with the Scripture of the Day.</div>
+    <div class="step">🙏 Read slowly and meditate on God’s Word.</div>
+  </div>
 </section>
 
 <section class="section">
-    <h3>Books of the Bible</h3>
-    <div class="books">
-        <div class="book"><h4>Genesis</h4></div>
-        <div class="book"><h4>Psalms</h4></div>
-        <div class="book"><h4>Proverbs</h4></div>
-        <div class="book"><h4>Gospels</h4></div>
-    </div>
+  <h3>Books of the Bible</h3>
+  <div class="books">
+    <div class="book"><h4>Genesis</h4></div>
+    <div class="book"><h4>Psalms</h4></div>
+    <div class="book"><h4>Proverbs</h4></div>
+    <div class="book"><h4>Gospels</h4></div>
+  </div>
 </section>
 
 <footer>
-    © 2026 Life in Holy Bible · Walking in His Word
+  © 2026 Life in Holy Bible · Walking in His Word
 </footer>
+
+<script>
+const verses = [
+  "Psalm 119:105 — Your word is a lamp to my feet and a light to my path.",
+  "John 3:16 — For God so loved the world that He gave His one and only Son.",
+  "Proverbs 3:5 — Trust in the Lord with all your heart.",
+  "Isaiah 41:10 — Do not fear, for I am with you."
+];
+const today = new Date().getDate();
+document.getElementById("verseText").innerText =
+  verses[today % verses.length];
+</script>
 
 </body>
 </html>
