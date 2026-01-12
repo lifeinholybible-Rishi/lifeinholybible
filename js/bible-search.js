@@ -1,10 +1,10 @@
- // Global KJV Bible Search – FINAL WORKING VERSION
+ // Global KJV Bible Search – FINAL DEFINITIVE VERSION
 
 let bibleBooks = [];
 const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
 
-// Fetch Bible from SAME folder (bulletproof)
+// 🔥 IMPORTANT: kjv.json is in THE SAME FOLDER (js/)
 fetch("kjv.json")
   .then(res => res.text())
   .then(text => {
