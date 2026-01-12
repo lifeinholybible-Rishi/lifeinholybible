@@ -1,13 +1,14 @@
-// Global KJV Bible Search – robust version
+ // Global KJV Bible Search – FINAL WORKING VERSION
 
 let bibleBooks = [];
 const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
 
-fetch("/data/kjv.json")
-  .then(response => response.text())   // ← key change
+// Fetch Bible from SAME folder (bulletproof)
+fetch("kjv.json")
+  .then(res => res.text())
   .then(text => {
-    const data = JSON.parse(text);     // safe manual parse
+    const data = JSON.parse(text);
     bibleBooks = data.books || [];
     console.log("Bible loaded:", bibleBooks.length, "books");
   })
@@ -24,8 +25,8 @@ input.addEventListener("input", () => {
   let count = 0;
 
   bibleBooks.forEach(book => {
-    book.chapters.forEach((chapter, cIdx) => {
-      chapter.forEach((verse, vIdx) => {
+    book.chapters.forEach((chapter, c) => {
+      chapter.forEach((verse, v) => {
         if (verse.toLowerCase().includes(query)) {
 
           const highlighted = verse.replace(
@@ -37,7 +38,7 @@ input.addEventListener("input", () => {
           div.className = "result";
           div.innerHTML = `
             <div class="reference">
-              ${book.name} ${cIdx + 1}:${vIdx + 1}
+              ${book.name} ${c + 1}:${v + 1}
             </div>
             <div>${highlighted}</div>
           `;
