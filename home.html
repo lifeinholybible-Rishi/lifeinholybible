@@ -1,207 +1,318 @@
-  
-// When the page loads
-window.onload = function() {
-    // Get references to DOM elements
-    var searchBox = document.getElementById('searchBox');
-    var searchButton = document.getElementById('searchButton');
-    var suggestionsList = document.getElementById('suggestions');
-    var originalContent = document.getElementById('originalContent');
-    var foundContent = document.getElementById('foundContent');
-    var tableCaptions = []; // Store original table captions
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    // Fixed suggestions for autocomplete
-    var fixedSuggestions = ['Apple', 'Banana', 'Orange', 'Cherry', 'Lemon', 'Strawberry', 'Blueberry', 'Raspberry'];
+<title>Life in Holy Bible | The Living Word of God</title>
 
-    // Get table data from the original content
-    var tables = originalContent.getElementsByTagName('table');
-    var tableContent = [];
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
-    for (var i = 0; i < tables.length; i++) {
-        var table = tables[i];
-        var caption = table.querySelector('caption').textContent;
-        var rows = table.querySelectorAll('tr');
+<style>
+/* ========== RESET ========== */
+* { margin:0; padding:0; box-sizing:border-box; }
 
-        var tableRows = [];
+/* ========== BODY ========== */
+body {
+  font-family:'Montserrat',sans-serif;
+  color:#ffffff;
+  background:#050814;
+  overflow-x:hidden;
+}
 
-        for (var j = 0; j < rows.length; j++) {
-            var cells = rows[j].querySelectorAll('td');
-            var rowCells = [];
+/* ========== CANVAS BACKGROUND ========== */
+canvas {
+  position:fixed;
+  inset:0;
+  z-index:-2;
+}
 
-            for (var k = 0; k < cells.length; k++) {
-                rowCells.push(cells[k].textContent);
-            }
+/* ========== DIVINE LIGHT ========== */
+#divineLight {
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
 
-            tableRows.push(rowCells);
-        }
+/* ========== NAVBAR ========== */
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:18px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(6px);
+  z-index:10;
+}
 
-        tableContent.push({ caption: caption, rows: tableRows });
-        tableCaptions.push(caption);
-    }
+.brand h1 {
+  font-family:'Playfair Display',serif;
+  color:#ffd700;
+  font-size:1.4rem;
+}
+.brand span {
+  font-size:.65rem;
+  letter-spacing:2px;
+  opacity:.85;
+}
 
-    // Event listener for input in the search box
-    searchBox.addEventListener('input', function() {
-        var searchText = searchBox.value.trim();
-        generateSuggestions(searchText);
-    });
+nav ul {
+  list-style:none;
+  display:flex;
+  gap:16px;
+}
+nav ul li a, nav ul li button {
+  text-decoration:none;
+  color:#ffffff;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:13px;
+}
+nav ul li a:hover, nav ul li button:hover {
+  color:#ffd700;
+}
 
-    // Event listener for the search button
-    searchButton.addEventListener('click', function() {
-        searchAndHighlight();
-    });
+/* ========== HERO ========== */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 20px;
+}
 
-    // Event listener to select the search box content on focus
-    searchBox.addEventListener('focus', function() {
-        searchBox.select();
-    });
+.hero-box {
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(8px);
+  padding:45px 55px;
+  border-radius:22px;
+  max-width:900px;
+}
 
-    // Event listener for pressing Enter in the search box
-    searchBox.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchAndHighlight();
-        }
-    });
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:3.8rem;
+  color:#ffd700;
+  text-shadow:0 0 40px rgba(255,215,0,0.7);
+  margin-bottom:12px;
+}
 
-    // Event listener for selecting suggestions from the list
-    suggestionsList.addEventListener('click', function(event) {
-        var selectedSuggestion = event.target.textContent;
-        searchBox.value = selectedSuggestion;
-        searchAndHighlight();
-    });
+.hero h2 {
+  letter-spacing:4px;
+  font-size:1rem;
+  margin-bottom:25px;
+  opacity:.9;
+}
 
-    // Function to highlight the matching text
-    function highlightText(text, searchTerm) {
-        var startIndex = text.toLowerCase().indexOf(searchTerm.toLowerCase());
+/* Scripture animation */
+.scripture {
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 2.5s ease, transform 2.5s ease;
+  font-size:1.2rem;
+  line-height:1.9;
+}
+.scripture.visible {
+  opacity:1;
+  transform:translateY(0);
+}
 
-        if (startIndex === -1) {
-            return text; // No match found
-        }
+/* ========== SECTIONS ========== */
+.section {
+  padding:120px 60px;
+  background:rgba(0,0,0,0.6);
+}
 
-        var highlighted = text.substring(0, startIndex) +
-            '<span class="highlight">' + text.substring(startIndex, startIndex + searchTerm.length) + '</span>' +
-            text.substring(startIndex + searchTerm.length);
-        return highlighted;
-    }
+.section h3 {
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  color:#ffd700;
+  margin-bottom:60px;
+  font-size:2rem;
+}
 
-    // Function to search and highlight content
-    function searchAndHighlight() {
-        var searchText = searchBox.value.trim();
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:35px;
+}
 
-        if (searchText === '') {
-            displayOriginalContent();
-            return;
-        }
+.card {
+  background:rgba(255,255,255,0.08);
+  padding:32px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.15);
+}
 
-        foundContent.innerHTML = '';
-        var matchedTables = [];
+/* ========== FOOTER ========== */
+footer {
+  text-align:center;
+  padding:45px;
+  background:rgba(0,0,0,0.8);
+  font-size:.85rem;
+  opacity:.85;
+}
 
-        // Loop through each table and its rows to find matches
-        for (var i = 0; i < tableContent.length; i++) {
-            var table = tableContent[i];
-            var matchedRows = [];
-            var tableMatched = false;
+/* ========== PRAYER MODE ========== */
+body.prayer-mode canvas {
+  display:none;
+}
+body.prayer-mode .hero-box,
+body.prayer-mode .section {
+  background:rgba(0,0,0,0.8);
+}
 
-            // Check if caption matches the search text
-            if (table.caption.toLowerCase().includes(searchText.toLowerCase())) {
-                tableMatched = true;
-                matchedTables.push(createTableElement(table.caption, table.rows, searchText));
-            }
+/* ========== ELDER MODE ========== */
+body.elder-mode {
+  font-size:120%;
+}
+body.elder-mode .hero h1 {
+  font-size:4.2rem;
+}
+body.elder-mode p {
+  font-size:1.4rem;
+  line-height:2.2;
+}
+body.elder-mode canvas {
+  display:none;
+}
 
-            // Check each row for matches
-            for (var j = 0; j < table.rows.length; j++) {
-                var row = table.rows[j];
-                var rowMatched = false;
+/* ========== MOBILE ========== */
+@media(max-width:768px){
+  nav { padding:15px 25px; }
+  .hero h1 { font-size:2.5rem; }
+  .hero-box { padding:30px; }
+  .section { padding:90px 25px; }
+}
+</style>
+</head>
 
-                for (var k = 0; k < row.length; k++) {
-                    if (row[k].toLowerCase().includes(searchText.toLowerCase())) {
-                        rowMatched = true;
-                        matchedRows.push(row);
-                        break;
-                    }
-                }
+<body>
 
-                if (rowMatched && !tableMatched) {
-                    tableMatched = true;
-                }
-            }
+<!-- STARFIELD -->
+<canvas id="stars"></canvas>
 
-            // If the table or rows matched, create a new table element and add to matchedTables
-            if (tableMatched || matchedRows.length > 0) {
-                matchedTables.push(createTableElement(table.caption, matchedRows, searchText));
-            }
-        }
+<!-- DIVINE LIGHT -->
+<svg id="divineLight" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <defs>
+    <radialGradient id="holyGlow">
+      <stop offset="0%" stop-color="rgba(255,215,150,0.75)" />
+      <stop offset="40%" stop-color="rgba(255,215,150,0.35)" />
+      <stop offset="100%" stop-color="rgba(255,215,150,0)" />
+    </radialGradient>
+  </defs>
+  <rect width="100" height="100" fill="url(#holyGlow)">
+    <animate attributeName="opacity"
+      values="0.35;0.65;0.35"
+      dur="9s"
+      repeatCount="indefinite"/>
+  </rect>
+</svg>
 
-        // Append the matched table elements to the found content
-        matchedTables.forEach(function(matchedTable) {
-            foundContent.appendChild(matchedTable);
-        });
-    }
+<nav>
+  <div class="brand">
+    <h1>Life in Holy Bible</h1>
+    <span>THE LIVING WORD OF GOD</span>
+  </div>
+  <ul>
+    <li><a href="#events">Events</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="bible.html">Search</a></li>
+    <li><button onclick="togglePrayerMode()">Prayer Mode</button></li>
+    <li><button onclick="toggleElderMode()">Elder Mode</button></li>
+  </ul>
+</nav>
 
-    // Function to create a new table element
-    function createTableElement(caption, rows, searchText) {
-        var table = document.createElement('table');
-        var tableCaption = document.createElement('caption');
-        tableCaption.innerHTML = highlightText(caption, searchText);
-        table.appendChild(tableCaption);
+<section class="hero">
+  <div class="hero-box">
+    <h1>Life in Holy Bible</h1>
+    <h2>THE LIVING WORD OF GOD</h2>
+    <p class="scripture" id="scripture">
+      “The Lord reigns, He is clothed with majesty;  
+      the Lord is clothed with strength.”  
+      <br><b>— Psalm 93:1</b>
+    </p>
+  </div>
+</section>
 
-        for (var i = 0; i < rows.length; i++) {
-            var rowCells = rows[i];
-            var row = document.createElement('tr');
+<section id="events" class="section">
+  <h3>Events & News</h3>
+  <div class="grid">
+    <div class="card">Weekly Bible Study</div>
+    <div class="card">Prayer & Fellowship</div>
+    <div class="card">Devotional Teachings</div>
+  </div>
+</section>
 
-            for (var j = 0; j < rowCells.length; j++) {
-                var cell = document.createElement('td');
-                cell.innerHTML = highlightText(rowCells[j], searchText);
-                row.appendChild(cell);
-            }
+<section class="section">
+  <h3>How to Use This Website</h3>
+  <div class="grid">
+    <div class="card">📖 Search Scriptures</div>
+    <div class="card">📚 Read Bible Books</div>
+    <div class="card">🕯️ Reflect Daily</div>
+    <div class="card">🙏 Meditate & Pray</div>
+  </div>
+</section>
 
-            table.appendChild(row);
-        }
+<footer>
+  © 2026 Life in Holy Bible · Walking in His Word
+</footer>
 
-        return table;
-    }
+<script>
+/* Scripture entrance */
+window.addEventListener("load",()=>{
+  setTimeout(()=> {
+    document.getElementById("scripture").classList.add("visible");
+  },1200);
+});
 
-    // Function to display the original content
-    function displayOriginalContent() {
-        foundContent.innerHTML = '';
-    }
+/* Prayer mode */
+function togglePrayerMode(){
+  document.body.classList.toggle("prayer-mode");
+}
 
-    // Function to generate autocomplete suggestions
-    function generateSuggestions(searchText) {
-        suggestionsList.innerHTML = '';
-        var filteredSuggestions = [];
+/* Elder mode */
+function toggleElderMode(){
+  document.body.classList.toggle("elder-mode");
+}
 
-        if (searchText.trim() === '') {
-            // If there's no text in the search box, hide the suggestions and return
-            suggestionsList.style.display = 'none';
-            return;
-        } else {
-            suggestionsList.style.display = 'block'; // Show the suggestions box
-        }
+/* Starfield animation */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
 
-        filteredSuggestions = fixedSuggestions.filter(function(suggestion) {
-            return suggestion.toLowerCase().includes(searchText.toLowerCase());
-        });
+const stars=Array.from({length:180},()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*1.3,
+  o:Math.random()
+}));
 
-        tableCaptions.forEach(function(caption) {
-            if (caption.toLowerCase().includes(searchText.toLowerCase())) {
-                filteredSuggestions.push(caption);
-            }
-        });
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    s.o+=(Math.random()-0.5)*0.02;
+    s.o=Math.max(0.15,Math.min(0.8,s.o));
+    ctx.fillStyle=`rgba(255,255,255,${s.o})`;
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 
-        tableContent.forEach(function(table) {
-            table.rows.forEach(function(row) {
-                row.forEach(function(cellContent) {
-                    if (cellContent.toLowerCase().includes(searchText.toLowerCase())) {
-                        filteredSuggestions.push(cellContent);
-                    }
-                });
-            });
-        });
-
-        filteredSuggestions.forEach(function(suggestion) {
-            var option = document.createElement('li');
-            option.textContent = suggestion;
-            suggestionsList.appendChild(option);
-        });
-    }
-}; 
+</body>
+</html>
