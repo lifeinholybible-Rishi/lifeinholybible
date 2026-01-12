@@ -1,21 +1,21 @@
- // Global KJV Bible Search – FINAL DEFINITIVE VERSION
+ // Global KJV Bible Search – MATCHES YOUR JSON STRUCTURE
 
 let bibleBooks = [];
 const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
 
-// 🔥 IMPORTANT: kjv.json is in THE SAME FOLDER (js/)
-fetch("kjv.json")
-  .then(res => res.text())
-  .then(text => {
-    const data = JSON.parse(text);
-    bibleBooks = data.books || [];
+// Load Bible (root-level JSON array)
+fetch("/kjv.json")
+  .then(res => res.json())
+  .then(data => {
+    bibleBooks = data; // <-- IMPORTANT FIX
     console.log("Bible loaded:", bibleBooks.length, "books");
   })
   .catch(err => {
     console.error("Bible load failed:", err);
   });
 
+// Search logic
 input.addEventListener("input", () => {
   const query = input.value.trim().toLowerCase();
   results.innerHTML = "";
@@ -25,11 +25,14 @@ input.addEventListener("input", () => {
   let count = 0;
 
   bibleBooks.forEach(book => {
-    book.chapters.forEach((chapter, c) => {
-      chapter.forEach((verse, v) => {
-        if (verse.toLowerCase().includes(query)) {
+    const bookName = book.abbrev.toUpperCase();
 
-          const highlighted = verse.replace(
+    book.chapters.forEach((chapter, chapterIndex) => {
+      chapter.forEach((verseText, verseIndex) => {
+
+        if (verseText.toLowerCase().includes(query)) {
+
+          const highlighted = verseText.replace(
             new RegExp(query, "gi"),
             m => `<span class="highlight">${m}</span>`
           );
@@ -38,7 +41,7 @@ input.addEventListener("input", () => {
           div.className = "result";
           div.innerHTML = `
             <div class="reference">
-              ${book.name} ${c + 1}:${v + 1}
+              ${bookName} ${chapterIndex + 1}:${verseIndex + 1}
             </div>
             <div>${highlighted}</div>
           `;
