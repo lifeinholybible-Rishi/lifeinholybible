@@ -1,11 +1,11 @@
-// Global KJV Bible Search Script
+ // Global KJV Bible Search Script (FIXED PATH)
 
 let bibleBooks = [];
 const input = document.getElementById("searchInput");
 const results = document.getElementById("results");
 
-// Load the KJV Bible JSON
-fetch("data/kjv.json")
+// ✅ ABSOLUTE PATH FIX
+fetch("/data/kjv.json")
   .then(response => response.json())
   .then(data => {
     console.log("Bible JSON loaded successfully");
@@ -15,7 +15,6 @@ fetch("data/kjv.json")
     console.error("Error loading Bible JSON:", error);
   });
 
-// Search when user types
 input.addEventListener("input", () => {
   const query = input.value.trim().toLowerCase();
   results.innerHTML = "";
@@ -29,7 +28,6 @@ input.addEventListener("input", () => {
   bibleBooks.forEach(book => {
     book.chapters.forEach((chapter, chapterIndex) => {
       chapter.forEach((verseText, verseIndex) => {
-
         if (verseText.toLowerCase().includes(query)) {
 
           const highlighted = verseText.replace(
@@ -48,8 +46,6 @@ input.addEventListener("input", () => {
 
           results.appendChild(verseDiv);
           found++;
-
-          // Limit results for performance
           if (found >= 50) return;
         }
       });
@@ -60,4 +56,3 @@ input.addEventListener("input", () => {
     results.innerHTML = "<p>No verses found.</p>";
   }
 });
-
