@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,63 +8,96 @@
 
 <style>
 body {
-  font-family: system-ui, sans-serif;
-  background:#050814;
-  color:#ffffff;
-  padding:40px;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #0a1a3a, #000814 70%);
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
 }
 
 h1 {
-  color:#ffd700;
-  text-align:center;
+  text-align: center;
+  color: #ffd700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
-p {
-  text-align:center;
-  opacity:0.8;
-  margin-bottom:30px;
+.subtitle {
+  text-align: center;
+  opacity: 0.8;
+  margin-bottom: 30px;
 }
 
 input {
-  width:100%;
-  padding:16px;
-  font-size:16px;
-  border-radius:10px;
-  border:none;
-  margin-bottom:25px;
+  width: 100%;
+  padding: 16px 18px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin-bottom: 30px;
 }
 
 .result {
-  background:rgba(255,255,255,0.08);
-  padding:18px;
-  border-radius:14px;
-  margin-bottom:15px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 18px 20px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(6px);
 }
 
 .reference {
-  color:#ffd700;
-  font-weight:bold;
-  margin-bottom:6px;
+  color: #ffd700;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .highlight {
-  background:rgba(255,215,0,0.35);
-  padding:0 3px;
-  border-radius:3px;
+  background: rgba(255, 215, 0, 0.35);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 14px;
+  opacity: 0.6;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Global Bible Search (KJV)</h1>
-<p>Search the Holy Bible — King James Version</p>
+<div class="container">
+  <h1>Global Bible Search (KJV)</h1>
+  <div class="subtitle">
+    Search the Holy Bible • King James Version
+  </div>
 
-<input id="searchInput" placeholder="Search: faith, love, salvation" />
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="Search words like faith, love, salvation…"
+    autocomplete="off"
+  />
 
-<div id="results"></div>
+  <div id="results"></div>
 
-<script src="js/bible-search.js"></script>
+  <footer>
+    Life in Holy Bible • Word of God
+  </footer>
+</div>
+
+<!-- ✅ CACHE-BUSTING SCRIPT (OPTION 3) -->
+<script src="js/bible-search.js?v=1.0"></script>
+
 </body>
 </html>
-
