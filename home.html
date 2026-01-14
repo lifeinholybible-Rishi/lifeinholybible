@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -25,6 +25,7 @@ canvas {
   position:fixed;
   inset:0;
   z-index:-2;
+  pointer-events:none;
 }
 
 /* ========== DIVINE LIGHT ========== */
@@ -106,8 +107,40 @@ nav ul li a:hover, nav ul li button:hover {
 .hero h2 {
   letter-spacing:4px;
   font-size:1rem;
-  margin-bottom:25px;
+  margin-bottom:18px;
   opacity:.9;
+}
+
+/* ========== SEARCH GATEWAYS ========== */
+.search-gateways {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:20px auto 25px;
+  max-width:520px;
+}
+
+.gateway-search {
+  width:100%;
+  padding:15px 18px;
+  font-size:15px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(0,0,0,0.65);
+  color:#ffffff;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+}
+
+.gateway-search::placeholder {
+  color:rgba(255,255,255,0.75);
+}
+
+.gateway-search:hover,
+.gateway-search:focus {
+  border-color:#ffd700;
+  outline:none;
+  box-shadow:0 0 15px rgba(255,215,0,0.35);
 }
 
 /* Scripture animation */
@@ -233,6 +266,25 @@ body.elder-mode canvas {
   <div class="hero-box">
     <h1>Life in Holy Bible</h1>
     <h2>THE LIVING WORD OF GOD</h2>
+
+    <!-- SEARCH BARS -->
+    <div class="search-gateways">
+      <input
+        type="text"
+        class="gateway-search"
+        placeholder="📖 Open Holy Bible (Reading Mode)"
+        readonly
+        onclick="window.location.href='bible.html'"
+      />
+      <input
+        type="text"
+        class="gateway-search"
+        placeholder="🔍 Global Bible Search (KJV)"
+        readonly
+        onclick="window.location.href='bible-search.html'"
+      />
+    </div>
+
     <p class="scripture" id="scripture">
       “The Lord reigns, He is clothed with majesty;  
       the Lord is clothed with strength.”  
@@ -253,8 +305,8 @@ body.elder-mode canvas {
 <section class="section">
   <h3>How to Use This Website</h3>
   <div class="grid">
-    <div class="card">📖 Search Scriptures</div>
-    <div class="card">📚 Read Bible Books</div>
+    <div class="card">📖 Read the Bible</div>
+    <div class="card">🔍 Search Scriptures</div>
     <div class="card">🕯️ Reflect Daily</div>
     <div class="card">🙏 Meditate & Pray</div>
   </div>
@@ -292,7 +344,7 @@ function resize(){
 resize();
 window.addEventListener("resize",resize);
 
-const stars=Array.from({length:180},()=>({
+const stars=Array.from({length:180},()=>( {
   x:Math.random()*canvas.width,
   y:Math.random()*canvas.height,
   r:Math.random()*1.3,
