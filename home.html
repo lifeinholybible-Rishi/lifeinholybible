@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,13 +6,14 @@
 
 <title>Life in Holy Bible | The Living Word of God</title>
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-/* ========== RESET ========== */
+/* ================= RESET ================= */
 * { margin:0; padding:0; box-sizing:border-box; }
 
-/* ========== BODY ========== */
+/* ================= BODY ================= */
 body {
   font-family:'Montserrat',sans-serif;
   color:#ffffff;
@@ -20,7 +21,7 @@ body {
   overflow-x:hidden;
 }
 
-/* ========== CANVAS BACKGROUND ========== */
+/* ================= STARFIELD CANVAS ================= */
 canvas {
   position:fixed;
   inset:0;
@@ -28,7 +29,7 @@ canvas {
   pointer-events:none;
 }
 
-/* ========== DIVINE LIGHT ========== */
+/* ================= DIVINE LIGHT ================= */
 #divineLight {
   position:fixed;
   inset:0;
@@ -36,7 +37,7 @@ canvas {
   pointer-events:none;
 }
 
-/* ========== NAVBAR ========== */
+/* ================= NAVBAR ================= */
 nav {
   position:fixed;
   top:0;
@@ -78,7 +79,7 @@ nav ul li a:hover, nav ul li button:hover {
   color:#ffd700;
 }
 
-/* ========== HERO ========== */
+/* ================= HERO ================= */
 .hero {
   min-height:100vh;
   display:flex;
@@ -89,8 +90,8 @@ nav ul li a:hover, nav ul li button:hover {
 }
 
 .hero-box {
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(8px);
+  background:;
+  backdrop-filter:blur(100px);
   padding:45px 55px;
   border-radius:22px;
   max-width:900px;
@@ -100,56 +101,77 @@ nav ul li a:hover, nav ul li button:hover {
   font-family:'Playfair Display',serif;
   font-size:3.8rem;
   color:#ffd700;
-  text-shadow:0 0 40px rgba(255,215,0,0.7);
   margin-bottom:12px;
 }
 
 .hero h2 {
   letter-spacing:4px;
   font-size:1rem;
-  margin-bottom:18px;
+  margin-bottom:20px;
   opacity:.9;
 }
 
-/* ========== SEARCH GATEWAYS ========== */
+/* ================= SEARCH BARS ================= */
 .search-gateways {
   display:flex;
   flex-direction:column;
   gap:14px;
-  margin:20px auto 25px;
+  margin:20px auto 30px;
   max-width:520px;
 }
 
- .gateway-search {
-  width: 100%;
-  padding: 15px 18px;
-  font-size: 15px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(0,0,0,0.65);
-  color: #ffffff;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-
-  /* 🔑 CRITICAL FIX */
-  white-space: nowrap;
-  overflow: hidden;          /* must be hidden */
-  text-overflow: ellipsis;   /* shows … */
+.gateway-search {
+  width:100%;
+  padding:15px 18px;
+  font-size:15px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(0,0,0,0.65);
+  color:#ffffff;
+  cursor:pointer;
+  transition:box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-
-.gateway-search::placeholder {
-  color:rgba(255,255,255,0.75);
-}
-
+/* Glow effect */
 .gateway-search:hover,
 .gateway-search:focus {
-  border-color:#ffd700;
+  border-color:rgba(255,215,0,0.9);
+  box-shadow:
+    0 0 12px rgba(255,215,0,0.45),
+    0 0 28px rgba(255,215,0,0.25);
   outline:none;
-  box-shadow:0 0 15px rgba(255,215,0,0.35);
 }
 
-/* Scripture animation */
+/* ================= BOOK OF KNOW TRUTH ================= */
+.know-truth-section {
+  margin:25px auto 30px;
+  max-width:620px;
+  padding:32px;
+  border-radius:22px;
+  background:linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,0,0,0.75));
+  border:1px solid rgba(255,215,0,0.35);
+  cursor:pointer;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.know-truth-section:hover {
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(255,215,0,0.35);
+}
+
+.know-truth-title {
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  color:#ffd700;
+  margin-bottom:10px;
+}
+
+.know-truth-desc {
+  font-size:1.05rem;
+  line-height:1.7;
+}
+
+/* ================= SCRIPTURE ================= */
 .scripture {
   opacity:0;
   transform:translateY(20px);
@@ -162,12 +184,11 @@ nav ul li a:hover, nav ul li button:hover {
   transform:translateY(0);
 }
 
-/* ========== SECTIONS ========== */
+/* ================= SECTIONS ================= */
 .section {
   padding:120px 60px;
   background:rgba(0,0,0,0.6);
 }
-
 .section h3 {
   text-align:center;
   font-family:'Playfair Display',serif;
@@ -175,13 +196,11 @@ nav ul li a:hover, nav ul li button:hover {
   margin-bottom:60px;
   font-size:2rem;
 }
-
 .grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:35px;
 }
-
 .card {
   background:rgba(255,255,255,0.08);
   padding:32px;
@@ -189,7 +208,7 @@ nav ul li a:hover, nav ul li button:hover {
   border:1px solid rgba(255,255,255,0.15);
 }
 
-/* ========== FOOTER ========== */
+/* ================= FOOTER ================= */
 footer {
   text-align:center;
   padding:45px;
@@ -198,16 +217,14 @@ footer {
   opacity:.85;
 }
 
-/* ========== PRAYER MODE ========== */
-body.prayer-mode canvas {
-  display:none;
-}
+/* ================= PRAYER MODE ================= */
+body.prayer-mode canvas { display:none; }
 body.prayer-mode .hero-box,
 body.prayer-mode .section {
   background:rgba(0,0,0,0.8);
 }
 
-/* ========== ELDER MODE ========== */
+/* ================= ELDER MODE ================= */
 body.elder-mode {
   font-size:120%;
 }
@@ -222,10 +239,10 @@ body.elder-mode canvas {
   display:none;
 }
 
-/* ========== MOBILE ========== */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   nav { padding:15px 25px; }
-  .hero h1 { font-size:2.5rem; }
+  .hero h1 { font-size:2.4rem; }
   .hero-box { padding:30px; }
   .section { padding:90px 25px; }
 }
@@ -254,6 +271,7 @@ body.elder-mode canvas {
   </rect>
 </svg>
 
+<!-- NAVIGATION -->
 <nav>
   <div class="brand">
     <h1>Life in Holy Bible</h1>
@@ -268,37 +286,34 @@ body.elder-mode canvas {
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-box">
     <h1>Life in Holy Bible</h1>
     <h2>THE LIVING WORD OF GOD</h2>
 
-    <!-- SEARCH BARS -->
     <div class="search-gateways">
-      <input
-        type="text"
-        class="gateway-search"
-        placeholder="🔍Search Here to  Know the Truth through word of God."
-        readonly
-        onclick="window.location.href='bible.html'"
-      />
-      <input
-        type="text"
-        class="gateway-search"
-        placeholder="🔍 Global Bible Search (KJV)"
-        readonly
-        onclick="window.location.href='bible-search.html'"
-      />
+      <input class="gateway-search" readonly placeholder="📖 Open Holy Bible (Reading Mode)" onclick="location.href='bible.html'">
+      <input class="gateway-search" readonly placeholder="🔍 Global Bible Search (KJV)" onclick="location.href='bible-search.html'">
+    </div>
+
+    <div class="know-truth-section" onclick="location.href='know-truth.html'">
+      <div class="know-truth-title">📘 Book of Know Truth</div>
+      <div class="know-truth-desc">
+        A collection of 100 spirit-led books written through prayer,
+        Scripture, and the grace of God — created to guide generations
+        toward truth and righteousness.
+      </div>
     </div>
 
     <p class="scripture" id="scripture">
-      “The Lord reigns, He is clothed with majesty;  
-      the Lord is clothed with strength.”  
+      “The Lord reigns, He is clothed with majesty.”
       <br><b>— Psalm 93:1</b>
     </p>
   </div>
 </section>
 
+<!-- EVENTS -->
 <section id="events" class="section">
   <h3>Events & News</h3>
   <div class="grid">
@@ -308,6 +323,7 @@ body.elder-mode canvas {
   </div>
 </section>
 
+<!-- HOW TO USE -->
 <section class="section">
   <h3>How to Use This Website</h3>
   <div class="grid">
@@ -319,23 +335,21 @@ body.elder-mode canvas {
 </section>
 
 <footer>
-  © 2026 Life in Holy Bible · Walking in His Word.by Y B Rishi (Author of Know Truth Book and Developer of this project)
+  © 2026 Life in Holy Bible · Walking in His Word
 </footer>
 
 <script>
-/* Scripture entrance */
+/* Scripture fade-in */
 window.addEventListener("load",()=>{
-  setTimeout(()=> {
-    document.getElementById("scripture").classList.add("visible");
-  },1200);
+  setTimeout(()=>document.getElementById("scripture").classList.add("visible"),1200);
 });
 
-/* Prayer mode */
+/* Prayer Mode */
 function togglePrayerMode(){
   document.body.classList.toggle("prayer-mode");
 }
 
-/* Elder mode */
+/* Elder Mode */
 function toggleElderMode(){
   document.body.classList.toggle("elder-mode");
 }
@@ -350,7 +364,7 @@ function resize(){
 resize();
 window.addEventListener("resize",resize);
 
-const stars=Array.from({length:180},()=>( {
+const stars=Array.from({length:180},()=>({
   x:Math.random()*canvas.width,
   y:Math.random()*canvas.height,
   r:Math.random()*1.3,
