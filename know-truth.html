@@ -20,109 +20,85 @@ body {
   overflow-x:hidden;
 }
 
-/* ================= DIVINE LIGHT SVG ================= */
+/* ================= DIVINE LIGHT ================= */
 #divineLight {
   position:fixed;
   inset:0;
-  z-index:-1;              /* Behind content */
-  pointer-events:none;     /* Click-through */
+  z-index:-1;
+  pointer-events:none;
 }
 
-/* ================= PAGE CONTENT WRAPPER ================= */
+/* ================= PAGE ================= */
 .page {
-  position:relative;
-  z-index:1;
+  max-width:1400px;
+  margin:auto;
+  padding:100px 20px 80px;
 }
 
 /* ================= HEADER ================= */
 .header {
-  padding:100px 20px 60px;
   text-align:center;
-  background:;
-  backdrop-filter:blur(6px);
+  margin-bottom:60px;
 }
 
 .header h1 {
   font-family:'Playfair Display', serif;
   font-size:3rem;
   color:#ffd700;
-  margin-bottom:15px;
+  margin-bottom:14px;
 }
 
 .header p {
-  max-width:900px;
-  margin:0 auto;
-  font-size:1.1rem;
+  max-width:950px;
+  margin:auto;
   line-height:1.9;
   opacity:0.9;
 }
 
-/* ================= BOOKS SECTION ================= */
-.books-section {
-  padding:70px 20px;
-}
-
-.books-title {
-  text-align:center;
-  font-family:'Playfair Display', serif;
-  font-size:2rem;
-  color:#ffd700;
-  margin-bottom:50px;
-}
-
-/* ================= RESPONSIVE GRID ================= */
+/* ================= BOOK GRID ================= */
 .books-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
-  gap:25px;
-  max-width:1200px;
-  margin:0 auto;
-}
-
-/* ================= BOOK CARD ================= */
-.book-card {
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:16px;
-  padding:15px;
-  text-align:center;
-  cursor:pointer;
-  transition:transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.book-card:hover {
-  transform:translateY(-6px);
-  box-shadow:0 10px 30px rgba(255,215,0,0.25);
+  gap:28px;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
 }
 
 /* ================= BOOK COVER ================= */
 .book-cover {
   width:100%;
-  height:180px;
-  border-radius:12px;
-  object-fit:cover;
-  margin-bottom:15px;
-  background:#000;
+  height:auto;
+  display:block;
+  border-radius:10px;
+  border:1.5px solid rgba(255,215,0,0.7);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ================= BOOK TITLE ================= */
-.book-title {
-  font-size:0.95rem;
-  line-height:1.4;
+.book-cover:hover,
+.book-cover:active {
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 18px rgba(255,215,0,0.6),
+    0 0 40px rgba(255,215,0,0.3);
 }
 
-/* ================= MOBILE: EXACT 4 BOOKS ================= */
-@media (max-width:600px) {
-  .books-grid {
-    grid-template-columns:repeat(2, 1fr);
+/* ================= MOBILE: 1 BOOK PER ROW ================= */
+@media (max-width:768px){
+  .books-grid{
+    grid-template-columns:1fr;
+    gap:26px;
+  }
+
+  .book-cover{
+    max-width:340px;
+    margin:auto;
   }
 }
 
 /* ================= FOOTER ================= */
 footer {
   text-align:center;
-  padding:40px 20px;
+  padding:45px 20px;
   background:rgba(0,0,0,0.8);
+  margin-top:80px;
   font-size:0.85rem;
   opacity:0.85;
 }
@@ -131,7 +107,7 @@ footer {
 
 <body>
 
-<!-- ================= DIVINE LIGHT BACKGROUND ================= -->
+<!-- DIVINE LIGHT -->
 <svg id="divineLight" viewBox="0 0 100 100" preserveAspectRatio="none">
   <defs>
     <radialGradient id="holyGlow">
@@ -141,75 +117,65 @@ footer {
     </radialGradient>
   </defs>
   <rect width="100" height="100" fill="url(#holyGlow)">
-    <animate
-      attributeName="opacity"
+    <animate attributeName="opacity"
       values="0.35;0.65;0.35"
-      dur="10s"
-      repeatCount="indefinite"/>
+      dur="9s"
+      repeatCount="indefinite" />
   </rect>
 </svg>
 
-<!-- ================= PAGE CONTENT ================= -->
 <div class="page">
 
-  <!-- INTRODUCTION -->
-  <section class="header">
+  <!-- HEADER -->
+  <div class="header">
     <h1>Book of Know Truth</h1>
     <p>
-      <b>Know Truth</b> is a collection of spiritual writings revealed by the grace of God
-      and the guidance of the Holy Spirit, formed through prayer and
-      self-study of the Holy Bible.
-      <br><br>
-      This work consists of <b>100 books</b>, each dedicated to an essential spiritual
-      topic meant to guide individuals and generations toward truth,
-      righteousness, and the understanding of God.
-      <br><br>
-      These writings are shaped through Scripture, reflection, and prayer,
-      to glorify God and reveal His character, His creation,
-      and His unconditional love.
+      A sacred collection of Scripture-rooted teachings written through prayer,
+      study of the Holy Bible, and the guidance of the Holy Spirit —
+      prepared for generations to walk in truth, righteousness, and salvation.
     </p>
-  </section>
+  </div>
 
-  <!-- BOOKS GRID -->
-  <section class="books-section">
-    <div class="books-title">The 100 Books of Know Truth</div>
+  <!-- BOOK COVERS -->
+  <div class="books-grid">
 
-    <div class="books-grid">
+    <a href="books/book-01.html"><img src="images/books/book-01.jpg" class="book-cover" alt="Book 1"></a>
+    <a href="books/book-02.html"><img src="images/books/book-02.jpg" class="book-cover" alt="Book 2"></a>
+    <a href="books/book-03.html"><img src="images/books/book-03.jpg" class="book-cover" alt="Book 3"></a>
+    <a href="books/book-04.html"><img src="images/books/book-04.jpg" class="book-cover" alt="Book 4"></a>
+    <a href="books/book-05.html"><img src="images/books/book-05.jpg" class="book-cover" alt="Book 5"></a>
+    <a href="books/book-06.html"><img src="images/books/book-06.jpg" class="book-cover" alt="Book 6"></a>
+    <a href="books/book-07.html"><img src="images/books/book-07.jpg" class="book-cover" alt="Book 7"></a>
+    <a href="books/book-08.html"><img src="images/books/book-08.jpg" class="book-cover" alt="Book 8"></a>
+    <a href="books/book-09.html"><img src="images/books/book-09.jpg" class="book-cover" alt="Book 9"></a>
+    <a href="books/book-10.html"><img src="images/books/book-10.jpg" class="book-cover" alt="Book 10"></a>
 
-      <!-- BOOK 1 -->
-      <div class="book-card" onclick="location.href='know-truth-about-god.html'">
-        <img src="images/books/about-god.jpg" alt="Know Truth – About God" class="book-cover">
-        <div class="book-title">About God</div>
-      </div>
+    <a href="books/book-11.html"><img src="images/books/book-11.jpg" class="book-cover" alt="Book 11"></a>
+    <a href="books/book-12.html"><img src="images/books/book-12.jpg" class="book-cover" alt="Book 12"></a>
+    <a href="books/book-13.html"><img src="images/books/book-13.jpg" class="book-cover" alt="Book 13"></a>
+    <a href="books/book-14.html"><img src="images/books/book-14.jpg" class="book-cover" alt="Book 14"></a>
+    <a href="books/book-15.html"><img src="images/books/book-15.jpg" class="book-cover" alt="Book 15"></a>
+    <a href="books/book-16.html"><img src="images/books/book-16.jpg" class="book-cover" alt="Book 16"></a>
+    <a href="books/book-17.html"><img src="images/books/book-17.jpg" class="book-cover" alt="Book 17"></a>
+    <a href="books/book-18.html"><img src="images/books/book-18.jpg" class="book-cover" alt="Book 18"></a>
+    <a href="books/book-19.html"><img src="images/books/book-19.jpg" class="book-cover" alt="Book 19"></a>
+    <a href="books/book-20.html"><img src="images/books/book-20.jpg" class="book-cover" alt="Book 20"></a>
 
-      <!-- BOOK 2 -->
-      <div class="book-card" onclick="location.href='know-truth-faith.html'">
-        <img src="images/books/faith.jpg" alt="Know Truth – Faith" class="book-cover">
-        <div class="book-title">Faith</div>
-      </div>
+    <a href="books/book-21.html"><img src="images/books/book-21.jpg" class="book-cover" alt="Book 21"></a>
+    <a href="books/book-22.html"><img src="images/books/book-22.jpg" class="book-cover" alt="Book 22"></a>
+    <a href="books/book-23.html"><img src="images/books/book-23.jpg" class="book-cover" alt="Book 23"></a>
+    <a href="books/book-24.html"><img src="images/books/book-24.jpg" class="book-cover" alt="Book 24"></a>
+    <a href="books/book-25.html"><img src="images/books/book-25.jpg" class="book-cover" alt="Book 25"></a>
+    <a href="books/book-26.html"><img src="images/books/book-26.jpg" class="book-cover" alt="Book 26"></a>
+    <a href="books/book-27.html"><img src="images/books/book-27.jpg" class="book-cover" alt="Book 27"></a>
 
-      <!-- BOOK 3 -->
-      <div class="book-card" onclick="location.href='know-truth-love.html'">
-        <img src="images/books/love.jpg" alt="Know Truth – Love" class="book-cover">
-        <div class="book-title">Love</div>
-      </div>
-
-      <!-- BOOK 4 -->
-      <div class="book-card" onclick="location.href='know-truth-righteousness.html'">
-        <img src="images/books/righteousness.jpg" alt="Know Truth – Righteousness" class="book-cover">
-        <div class="book-title">Righteousness</div>
-      </div>
-
-      <!-- ADD MORE BOOKS UP TO 100 -->
-
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Life in Holy Bible · Know Truth · Walking in His Word
-  </footer>
+  </div>
 
 </div>
+
+<footer>
+  © 2026 Life in Holy Bible · Know Truth · Walking in His Word
+</footer>
 
 </body>
 </html>
