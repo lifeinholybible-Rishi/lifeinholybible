@@ -18,7 +18,8 @@ window.onload = function() {
 
     for (var i = 0; i < tables.length; i++) {
         var table = tables[i];
-        var caption = table.querySelector('caption').textContent;
+        var captionElement = table.querySelector('caption');
+        var caption = captionElement ? captionElement.textContent : '';
         var rows = table.querySelectorAll('tr');
 
         var tableRows = [];
@@ -64,6 +65,10 @@ window.onload = function() {
 
     // Event listener for selecting suggestions from the list
     suggestionsList.addEventListener('click', function(event) {
+        if (event.target.tagName.toLowerCase() !== 'li') {
+            return;
+        }
+
         var selectedSuggestion = event.target.textContent;
         searchBox.value = selectedSuggestion;
         searchAndHighlight();
@@ -99,12 +104,11 @@ window.onload = function() {
         for (var i = 0; i < tableContent.length; i++) {
             var table = tableContent[i];
             var matchedRows = [];
-            var tableMatched = false;
+            var captionMatched = false;
 
             // Check if caption matches the search text
             if (table.caption.toLowerCase().includes(searchText.toLowerCase())) {
-                tableMatched = true;
-                matchedTables.push(createTableElement(table.caption, table.rows, searchText));
+                captionMatched = true;
             }
 
             // Check each row for matches
@@ -120,13 +124,12 @@ window.onload = function() {
                     }
                 }
 
-                if (rowMatched && !tableMatched) {
-                    tableMatched = true;
-                }
             }
 
-            // If the table or rows matched, create a new table element and add to matchedTables
-            if (tableMatched || matchedRows.length > 0) {
+            // If the caption matched, show the full table once. Otherwise show only matching rows.
+            if (captionMatched) {
+                matchedTables.push(createTableElement(table.caption, table.rows, searchText));
+            } else if (matchedRows.length > 0) {
                 matchedTables.push(createTableElement(table.caption, matchedRows, searchText));
             }
         }
