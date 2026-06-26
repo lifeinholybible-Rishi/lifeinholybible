@@ -39,6 +39,10 @@
   nav.className = "book-reader-nav";
   nav.setAttribute("aria-label", "Floating book reader tools");
 
+  const toggleTools = makeButton("Tools", "readerToolsToggle");
+  toggleTools.className = "reader-tools-toggle";
+  toggleTools.setAttribute("aria-expanded", "false");
+
   const bookSelect = document.createElement("select");
   bookSelect.id = "readerBookSelect";
   bookSelect.setAttribute("aria-label", "Choose book");
@@ -51,6 +55,7 @@
     bookSelect.appendChild(option);
   }
 
+  nav.appendChild(toggleTools);
   nav.appendChild(bookSelect);
   nav.appendChild(makeLink("Previous", previousBook ? bookHref(previousBook) : null));
   nav.appendChild(makeLink("Next", nextBook ? bookHref(nextBook) : null));
@@ -60,6 +65,12 @@
   nav.appendChild(makeLink("Library", "../know-truth.html"));
 
   document.body.insertBefore(nav, document.body.firstChild);
+
+  toggleTools.addEventListener("click", function () {
+    const isOpen = nav.classList.toggle("reader-tools-open");
+    toggleTools.setAttribute("aria-expanded", String(isOpen));
+    toggleTools.textContent = isOpen ? "Close" : "Tools";
+  });
 
   bookSelect.addEventListener("change", function () {
     window.location.href = bookSelect.value;
