@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Read Book of Know Truth pages with Home, Reader Library, Original Library, Previous, Next, Large Text, Plain Mode, and Print controls.">
+<meta name="description" content="Read Book of Know Truth pages with Home, Reader Library, Original Library, book selector, Previous, Next, Large Text, Plain Mode, and Print controls.">
 <meta name="theme-color" content="#050814">
 <title>Book Reader | Life in Holy Bible</title>
 <style>
@@ -28,7 +28,8 @@ body {
   border-bottom: 1px solid rgba(255, 215, 0, 0.35);
 }
 .reader-nav a,
-.reader-nav button {
+.reader-nav button,
+.reader-nav select {
   min-height: 40px;
   padding: 9px 14px;
   border-radius: 999px;
@@ -39,10 +40,16 @@ body {
   cursor: pointer;
   font: inherit;
 }
+.reader-nav select option {
+  background: #111111;
+  color: #ffffff;
+}
 .reader-nav a:hover,
 .reader-nav button:hover,
+.reader-nav select:hover,
 .reader-nav a:focus-visible,
-.reader-nav button:focus-visible {
+.reader-nav button:focus-visible,
+.reader-nav select:focus-visible {
   border-color: #ffd700;
   box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.18);
   outline: none;
@@ -80,7 +87,8 @@ body.reader-plain-mode .reader-status {
 }
 @media (max-width: 720px) {
   .reader-nav a,
-  .reader-nav button {
+  .reader-nav button,
+  .reader-nav select {
     flex: 1 1 calc(50% - 10px);
     font-size: 14px;
   }
@@ -92,6 +100,7 @@ body.reader-plain-mode .reader-status {
   <a href="home.html">Home</a>
   <a href="reader-library.html">Reader Library</a>
   <a href="know-truth.html">Original Library</a>
+  <select id="bookSelect" aria-label="Choose book"></select>
   <button type="button" id="prevBook">Previous</button>
   <button type="button" id="nextBook">Next</button>
   <button type="button" id="largeText">Large Text</button>
@@ -112,9 +121,17 @@ const bookContent = document.getElementById("bookContent");
 const readerStatus = document.getElementById("readerStatus");
 const prevBook = document.getElementById("prevBook");
 const nextBook = document.getElementById("nextBook");
+const bookSelect = document.getElementById("bookSelect");
 
 function padBook(value) {
   return String(value).padStart(2, "0");
+}
+
+for (let index = 1; index <= totalBooks; index += 1) {
+  const option = document.createElement("option");
+  option.value = padBook(index);
+  option.textContent = `Book ${index}`;
+  bookSelect.appendChild(option);
 }
 
 function bookPath(value) {
@@ -132,6 +149,7 @@ async function loadBook() {
   readerStatus.textContent = `Loading Book ${currentBook} of ${totalBooks}…`;
   prevBook.disabled = currentBook === 1;
   nextBook.disabled = currentBook === totalBooks;
+  bookSelect.value = padBook(currentBook);
   updateUrl();
 
   try {
@@ -140,14 +158,29 @@ async function loadBook() {
     const html = await response.text();
     const doc = new DOMParser().parseFromString(html, "text/html");
     const originalContent = doc.querySelector(".container") || doc.body;
-    bookContent.innerHTML = originalContent.innerHTML;
+    const nodes = Array.from(originalContent.childNodes).map((node) => document.importNode(node, true));
+    bookContent.replaceChildren(...nodes);
     readerStatus.textContent = `Book ${currentBook} of ${totalBooks}`;
     document.title = `Book ${currentBook} | Life in Holy Bible`;
   } catch (error) {
-    bookContent.innerHTML = `<p style="padding:24px;text-align:center;">Unable to load this book. <a href="${path}">Open the original book page</a>.</p>`;
+    const message = document.createElement("p");
+    const link = document.createElement("a");
+    message.style.padding = "24px";
+    message.style.textAlign = "center";
+    message.append("Unable to load this book. ");
+    link.href = path;
+    link.textContent = "Open the original book page";
+    message.appendChild(link);
+    message.append(".");
+    bookContent.replaceChildren(message);
     readerStatus.textContent = "Book could not be loaded.";
   }
 }
+
+bookSelect.addEventListener("change", () => {
+  currentBook = Number.parseInt(bookSelect.value, 10);
+  loadBook();
+});
 
 prevBook.addEventListener("click", () => {
   if (currentBook > 1) {
