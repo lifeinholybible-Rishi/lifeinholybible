@@ -1,0 +1,92 @@
+/* Book of Know Truth reader navigation helpers */
+.book-reader-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.82);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.book-reader-nav a,
+.book-reader-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.book-reader-nav a:hover,
+.book-reader-nav button:hover,
+.book-reader-nav a:focus-visible,
+.book-reader-nav button:focus-visible {
+  border-color: #ffd700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.18);
+  outline: none;
+}
+
+.book-reader-nav button[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.book-reader-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+body.reader-large-text {
+  font-size: 118%;
+}
+
+body.reader-large-text table {
+  line-height: 1.9;
+}
+
+body.reader-plain-mode {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+body.reader-plain-mode table {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+body.reader-plain-mode td,
+body.reader-plain-mode th {
+  color: #111111 !important;
+  border-color: #555555 !important;
+}
+
+@media print {
+  .book-reader-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .book-reader-nav a,
+  .book-reader-nav button {
+    flex: 1 1 calc(50% - 10px);
+    font-size: 14px;
+    padding: 9px 10px;
+  }
+}
