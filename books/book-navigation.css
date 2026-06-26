@@ -36,6 +36,10 @@
   cursor: pointer;
 }
 
+.reader-tools-toggle {
+  display: none !important;
+}
+
 .book-reader-nav select {
   appearance: none;
   text-align: center;
@@ -98,30 +102,59 @@ body.reader-plain-mode th {
   .book-reader-nav {
     top: auto;
     right: 10px;
-    bottom: 10px;
-    left: 10px;
+    bottom: 18px;
+    left: auto;
     transform: none;
+    display: block;
     width: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    max-width: calc(100vw - 20px);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .book-reader-nav .reader-tools-toggle {
+    display: inline-flex !important;
+    min-height: 44px;
+    width: auto;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 215, 0, 0.55);
+    background: rgba(0, 0, 0, 0.68);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(8px);
+  }
+
+  .book-reader-nav a,
+  .book-reader-nav select,
+  .book-reader-nav button:not(.reader-tools-toggle) {
+    display: none;
+  }
+
+  .book-reader-nav.reader-tools-open {
+    width: min(168px, calc(100vw - 20px));
+    padding: 9px;
     border-radius: 18px;
+    border: 1px solid rgba(255, 215, 0, 0.42);
+    background: rgba(0, 0, 0, 0.58);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(10px);
   }
 
-  .book-reader-nav a,
-  .book-reader-nav button,
-  .book-reader-nav select {
-    flex: 1 1 calc(33.333% - 10px);
-    min-width: 92px;
+  .book-reader-nav.reader-tools-open a,
+  .book-reader-nav.reader-tools-open select,
+  .book-reader-nav.reader-tools-open button {
+    display: inline-flex;
+    min-height: 34px;
+    width: 100%;
+    margin-top: 7px;
+    padding: 7px 9px;
     font-size: 12px;
-    padding: 8px;
   }
-}
 
-@media (max-width: 520px) {
-  .book-reader-nav a,
-  .book-reader-nav button,
-  .book-reader-nav select {
-    flex-basis: calc(50% - 10px);
+  .book-reader-nav.reader-tools-open .reader-tools-toggle {
+    margin-top: 0;
   }
 }
