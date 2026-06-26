@@ -1,4 +1,4 @@
-// Book of Know Truth reader navigation helpers
+// Book of Know Truth floating reader tools
 (function () {
   const match = window.location.pathname.match(/book-(\d{2})\.html$/);
   if (!match) return;
@@ -16,35 +16,64 @@
     return `book-${padded(value)}.html`;
   }
 
+  function makeLink(label, href) {
+    const link = document.createElement("a");
+    link.textContent = label;
+    if (href) {
+      link.href = href;
+    } else {
+      link.setAttribute("aria-disabled", "true");
+    }
+    return link;
+  }
+
+  function makeButton(label, id) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.id = id;
+    button.textContent = label;
+    return button;
+  }
+
   const nav = document.createElement("nav");
   nav.className = "book-reader-nav";
-  nav.setAttribute("aria-label", "Book reader navigation");
+  nav.setAttribute("aria-label", "Floating book reader tools");
 
-  nav.innerHTML = `
-    <a href="../home.html">Home</a>
-    <a href="../know-truth.html">Library</a>
-    <a ${previousBook ? `href="${bookHref(previousBook)}"` : "aria-disabled=\"true\""}>Previous</a>
-    <a ${nextBook ? `href="${bookHref(nextBook)}"` : "aria-disabled=\"true\""}>Next</a>
-    <button type="button" id="readerLargeText">Large Text</button>
-    <button type="button" id="readerPlainMode">Plain Mode</button>
-    <button type="button" id="readerPrint">Print</button>
-  `;
+  const bookSelect = document.createElement("select");
+  bookSelect.id = "readerBookSelect";
+  bookSelect.setAttribute("aria-label", "Choose book");
+
+  for (let index = 1; index <= totalBooks; index += 1) {
+    const option = document.createElement("option");
+    option.value = bookHref(index);
+    option.textContent = `Book ${index}`;
+    if (index === currentBook) option.selected = true;
+    bookSelect.appendChild(option);
+  }
+
+  nav.appendChild(bookSelect);
+  nav.appendChild(makeLink("Previous", previousBook ? bookHref(previousBook) : null));
+  nav.appendChild(makeLink("Next", nextBook ? bookHref(nextBook) : null));
+  nav.appendChild(makeButton("Large Text", "readerLargeText"));
+  nav.appendChild(makeButton("Plain Mode", "readerPlainMode"));
+  nav.appendChild(makeButton("Print", "readerPrint"));
+  nav.appendChild(makeLink("Library", "../know-truth.html"));
 
   document.body.insertBefore(nav, document.body.firstChild);
 
-  const largeText = document.getElementById("readerLargeText");
-  const plainMode = document.getElementById("readerPlainMode");
-  const printButton = document.getElementById("readerPrint");
+  bookSelect.addEventListener("change", function () {
+    window.location.href = bookSelect.value;
+  });
 
-  largeText.addEventListener("click", function () {
+  document.getElementById("readerLargeText").addEventListener("click", function () {
     document.body.classList.toggle("reader-large-text");
   });
 
-  plainMode.addEventListener("click", function () {
+  document.getElementById("readerPlainMode").addEventListener("click", function () {
     document.body.classList.toggle("reader-plain-mode");
   });
 
-  printButton.addEventListener("click", function () {
+  document.getElementById("readerPrint").addEventListener("click", function () {
     window.print();
   });
 })();
