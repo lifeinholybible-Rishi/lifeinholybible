@@ -4,7 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>life in Holy Bible</title>
+<meta name="description" content="Life in Holy Bible is a Scripture study website for reading, searching, and reflecting on the Holy Bible.">
+<meta name="theme-color" content="#050814">
+<meta property="og:title" content="Life in Holy Bible">
+<meta property="og:description" content="Read, search, and reflect on the Holy Bible through Life in Holy Bible.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lifeinholybible.org/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://lifeinholybible.org/">
+<title>Life in Holy Bible</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H5266ZJQQM"></script>
@@ -17,10 +25,14 @@
 </script>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     body, html {
         margin: 0;
         padding: 0;
-        height: 100%;
+        min-height: 100%;
         background-image: conic-gradient( purple,rgb(53, 50, 50),purple,rgb(53, 50, 50),purple,rgb(53, 50, 50),purple,rgb(53, 50, 50),purple,rgb(53, 50, 50),purple,rgb(53, 50, 50));
     }
 
@@ -29,13 +41,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
+        min-height: 100vh;
+        padding: 20px;
     }
 
     .five-pointed-star {
         --star-color: gold;
         margin: 1em auto;
-        font-size: 10em;
+        font-size: clamp(5rem, 18vw, 10em);
         position: relative;
         display: block;
         width: 0px;
@@ -78,7 +91,7 @@
 
     .plus-symbol {
         display: none; /* Initially hide the plus symbol */
-        font-size: 10em; /* Adjust size as needed */
+        font-size: clamp(5rem, 18vw, 10em); /* Adjust size as needed */
         color: goldenrod; /* Adjust color as needed */
         position: absolute;
         top: 50%;
@@ -95,8 +108,8 @@
 
     /* Vertical line */
     .plus-symbol::before {
-        width: 60px; /* Adjust width as needed */
-        height: 400px; /* Adjust height as needed */
+        width: clamp(32px, 6vw, 60px); /* Adjust width as needed */
+        height: clamp(220px, 45vw, 400px); /* Adjust height as needed */
         top: calc(50% - 150px); /* Center vertically */
         left: calc(50% - 30px); /* Center horizontally */
         background-image: conic-gradient(yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow);
@@ -105,19 +118,42 @@
     /* Horizontal line */
     .plus-symbol::after {
         
-        width: 220px; /* Adjust width as needed */
-        height: 60px; /* Adjust height as needed */
+        width: clamp(140px, 35vw, 220px); /* Adjust width as needed */
+        height: clamp(32px, 6vw, 60px); /* Adjust height as needed */
         top: calc(50% - 70px); /* Center vertically above the center of the vertical line */
         left: calc(50% - 110px); /* Center horizontally */
         background-image: conic-gradient(yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod,yellow,goldenrod);
     }
+
+    @media (max-width: 520px) {
+        .plus-symbol::before {
+            top: calc(50% - 95px);
+            left: calc(50% - 16px);
+        }
+
+        .plus-symbol::after {
+            top: calc(50% - 32px);
+            left: calc(50% - 70px);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .five-pointed-star {
+            transition: none;
+        }
+    }
 </style>
 </head>
 <body>
-<div class="container">
-    <div class="five-pointed-star"></div>
-    <div class="plus-symbol"></div>
+<div class="container" aria-label="Life in Holy Bible opening animation">
+    <div class="five-pointed-star" aria-hidden="true"></div>
+    <div class="plus-symbol" aria-hidden="true"></div>
 </div>
+<noscript>
+    <p style="text-align:center; color:white; font-family:Arial, sans-serif;">
+        <a href="home.html" style="color:gold;">Continue to Life in Holy Bible</a>
+    </p>
+</noscript>
 
 <script>
     setTimeout(function() {
