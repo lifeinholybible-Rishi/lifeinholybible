@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Life in Holy Bible helps visitors read, search, and reflect on Scripture through Bible study, KJV search, and Book of Know Truth resources.">
+<meta name="theme-color" content="#050814">
+<meta property="og:title" content="Life in Holy Bible | The Living Word of God">
+<meta property="og:description" content="Read, search, and reflect on Scripture through Life in Holy Bible.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lifeinholybible.org/home.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://lifeinholybible.org/home.html">
 
 <title>Life in Holy Bible | The Living Word of God</title>
 
@@ -24,12 +32,21 @@
 /* ================= RESET ================= */
 * { margin:0; padding:0; box-sizing:border-box; }
 
+html { scroll-behavior:smooth; }
+
 /* ================= BODY ================= */
 body {
   font-family:'Montserrat',sans-serif;
   color:#ffffff;
   background:#050814;
   overflow-x:hidden;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline:3px solid #ffd700;
+  outline-offset:4px;
 }
 
 /* ================= STARFIELD CANVAS ================= */
@@ -57,6 +74,7 @@ nav {
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:18px;
   background:rgba(0,0,0,0.45);
   backdrop-filter:blur(6px);
   z-index:10;
@@ -76,6 +94,8 @@ nav {
 nav ul {
   list-style:none;
   display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
   gap:16px;
 }
 nav ul li a, nav ul li button {
@@ -97,7 +117,7 @@ nav ul li a:hover, nav ul li button:hover {
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:0 20px;
+  padding:120px 20px 40px;
 }
 
 .hero-box {
@@ -106,11 +126,12 @@ nav ul li a:hover, nav ul li button:hover {
   padding:45px 55px;
   border-radius:22px;
   max-width:900px;
+  width:100%;
 }
 
 .hero h1 {
   font-family:'Playfair Display',serif;
-  font-size:3.8rem;
+  font-size:clamp(2.4rem, 7vw, 3.8rem);
   color:#ffd700;
   margin-bottom:12px;
 }
@@ -246,10 +267,34 @@ body.elder-mode canvas {
 
 /* ================= MOBILE ================= */
 @media(max-width:768px){
-  nav { padding:15px 25px; }
+  nav {
+    position:absolute;
+    padding:15px 22px;
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  nav ul {
+    justify-content:flex-start;
+    gap:12px;
+  }
+  .brand h1 { font-size:1.2rem; }
+  .brand span { font-size:.6rem; }
+  .hero { padding-top:150px; }
   .hero h1 { font-size:2.4rem; }
-  .hero-box { padding:30px; }
+  .hero h2 { letter-spacing:2px; }
+  .hero-box { padding:30px 20px; }
+  .know-truth-section { padding:24px 18px; }
   .section { padding:90px 25px; }
+  footer { padding:35px 20px; line-height:1.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *, *::before, *::after {
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
 }
 </style>
 </head>
@@ -257,10 +302,10 @@ body.elder-mode canvas {
 <body>
 
 <!-- STARFIELD -->
-<canvas id="stars"></canvas>
+<canvas id="stars" aria-hidden="true"></canvas>
 
 <!-- DIVINE LIGHT -->
-<svg id="divineLight" viewBox="0 0 100 100" preserveAspectRatio="none">
+<svg id="divineLight" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
   <defs>
     <radialGradient id="holyGlow">
       <stop offset="0%" stop-color="rgba(255,215,150,0.75)" />
@@ -277,7 +322,7 @@ body.elder-mode canvas {
 </svg>
 
 <!-- NAVIGATION -->
-<nav>
+<nav aria-label="Main navigation">
   <div class="brand">
     <h1>Life in Holy Bible</h1>
     <span>THE LIVING WORD OF GOD</span>
@@ -287,10 +332,11 @@ body.elder-mode canvas {
      
     <li><a href="bible.html">Search</a></li>
      
-    <li><button onclick="toggleElderMode()">Elder Mode</button></li>
+    <li><button type="button" onclick="toggleElderMode()">Elder Mode</button></li>
   </ul>
 </nav>
 
+<main>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-box">
@@ -298,11 +344,11 @@ body.elder-mode canvas {
     <h2>THE LIVING WORD OF GOD</h2>
 
     <div class="search-gateways">
-      <input class="gateway-search" readonly placeholder="🔍Book Of Know Truth" onclick="location.href='bible.html'">
-      <input class="gateway-search" readonly placeholder="🔍 Global Bible Search (KJV)" onclick="location.href='bible-search.html'">
+      <input class="gateway-search" readonly aria-label="Book Of Know Truth" placeholder="🔍Book Of Know Truth" onclick="location.href='bible.html'">
+      <input class="gateway-search" readonly aria-label="Global Bible Search KJV" placeholder="🔍 Global Bible Search (KJV)" onclick="location.href='bible-search.html'">
     </div>
 
-    <div class="know-truth-section" onclick="location.href='know-truth.html'">
+    <div class="know-truth-section" role="link" tabindex="0" aria-label="Open Book of Know Truth" onclick="location.href='know-truth.html'" onkeydown="if(event.key==='Enter'||event.key===' '){location.href='know-truth.html'}">
       <div class="know-truth-title">📘 Book of Know Truth</div>
       <h1><p style="color: red;">Click here</p></h1>
       <div class="know-truth-desc">
@@ -339,6 +385,7 @@ body.elder-mode canvas {
     <div class="card">🙏 Meditate & Pray</div>
   </div>
 </section>
+</main>
 
 <footer>
  © 2026 Life in Holy Bible · Know Truth · Walking in His Word ·
