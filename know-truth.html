@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Book of Know Truth is a Scripture-rooted collection within Life in Holy Bible for study, reflection, righteousness, and salvation.">
+<meta name="theme-color" content="#050814">
+<meta property="og:title" content="Book of Know Truth | Life in Holy Bible">
+<meta property="og:description" content="A Scripture-rooted collection prepared for generations to walk in truth, righteousness, and salvation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lifeinholybible.org/know-truth.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://lifeinholybible.org/know-truth.html">
 
 <title>Book of Know Truth | Life in Holy Bible</title>
 
@@ -31,6 +39,12 @@ body {
   overflow-x:hidden;
 }
 
+a:focus-visible {
+  outline:3px solid #ffd700;
+  outline-offset:5px;
+  border-radius:12px;
+}
+
 /* ================= DIVINE LIGHT ================= */
 #divineLight {
   position:fixed;
@@ -54,7 +68,7 @@ body {
 
 .header h1 {
   font-family:'Playfair Display', serif;
-  font-size:3rem;
+  font-size:clamp(2.1rem, 6vw, 3rem);
   color:#ffd700;
   margin-bottom:14px;
 }
@@ -71,6 +85,11 @@ body {
   display:grid;
   gap:28px;
   grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.books-grid a {
+  display:block;
+  border-radius:12px;
 }
 
 /* ================= BOOK COVER ================= */
@@ -93,6 +112,18 @@ body {
 
 /* ================= MOBILE: 1 BOOK PER ROW ================= */
 @media (max-width:768px){
+  .page{
+    padding:70px 16px 60px;
+  }
+
+  .header{
+    margin-bottom:42px;
+  }
+
+  .header p{
+    line-height:1.8;
+  }
+
   .books-grid{
     grid-template-columns:1fr;
     gap:26px;
@@ -112,6 +143,15 @@ footer {
   margin-top:80px;
   font-size:0.85rem;
   opacity:0.85;
+  line-height:1.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
 }
 </style>
 </head>
@@ -119,7 +159,7 @@ footer {
 <body>
 
 <!-- DIVINE LIGHT -->
-<svg id="divineLight" viewBox="0 0 100 100" preserveAspectRatio="none">
+<svg id="divineLight" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
   <defs>
     <radialGradient id="holyGlow">
       <stop offset="0%" stop-color="rgba(255,215,150,0.75)" />
@@ -135,7 +175,7 @@ footer {
   </rect>
 </svg>
 
-<div class="page">
+<main class="page">
 
   <!-- HEADER -->
   <div class="header">
@@ -151,39 +191,39 @@ footer {
   <!-- BOOK COVERS -->
   <div class="books-grid">
 
-    <a href="books/book-01.html"><img src="images/books/book-01.jpg" class="book-cover" alt="Book 1"></a>
-    <a href="books/book-02.html"><img src="images/books/book-02.jpg" class="book-cover" alt="Book 2"></a>
-    <a href="books/book-03.html"><img src="images/books/book-03.jpg" class="book-cover" alt="Book 3"></a>
-    <a href="books/book-04.html"><img src="images/books/book-04.jpg" class="book-cover" alt="Book 4"></a>
-    <a href="books/book-05.html"><img src="images/books/book-05.jpg" class="book-cover" alt="Book 5"></a>
-    <a href="books/book-06.html"><img src="images/books/book-06.jpg" class="book-cover" alt="Book 6"></a>
-    <a href="books/book-07.html"><img src="images/books/book-07.jpg" class="book-cover" alt="Book 7"></a>
-    <a href="books/book-08.html"><img src="images/books/book-08.jpg" class="book-cover" alt="Book 8"></a>
-    <a href="books/book-09.html"><img src="images/books/book-09.jpg" class="book-cover" alt="Book 9"></a>
-    <a href="books/book-10.html"><img src="images/books/book-10.jpg" class="book-cover" alt="Book 10"></a>
+    <a href="books/book-01.html" aria-label="Open Book 1"><img src="images/books/book-01.jpg" class="book-cover" alt="Book 1" loading="lazy" decoding="async"></a>
+    <a href="books/book-02.html" aria-label="Open Book 2"><img src="images/books/book-02.jpg" class="book-cover" alt="Book 2" loading="lazy" decoding="async"></a>
+    <a href="books/book-03.html" aria-label="Open Book 3"><img src="images/books/book-03.jpg" class="book-cover" alt="Book 3" loading="lazy" decoding="async"></a>
+    <a href="books/book-04.html" aria-label="Open Book 4"><img src="images/books/book-04.jpg" class="book-cover" alt="Book 4" loading="lazy" decoding="async"></a>
+    <a href="books/book-05.html" aria-label="Open Book 5"><img src="images/books/book-05.jpg" class="book-cover" alt="Book 5" loading="lazy" decoding="async"></a>
+    <a href="books/book-06.html" aria-label="Open Book 6"><img src="images/books/book-06.jpg" class="book-cover" alt="Book 6" loading="lazy" decoding="async"></a>
+    <a href="books/book-07.html" aria-label="Open Book 7"><img src="images/books/book-07.jpg" class="book-cover" alt="Book 7" loading="lazy" decoding="async"></a>
+    <a href="books/book-08.html" aria-label="Open Book 8"><img src="images/books/book-08.jpg" class="book-cover" alt="Book 8" loading="lazy" decoding="async"></a>
+    <a href="books/book-09.html" aria-label="Open Book 9"><img src="images/books/book-09.jpg" class="book-cover" alt="Book 9" loading="lazy" decoding="async"></a>
+    <a href="books/book-10.html" aria-label="Open Book 10"><img src="images/books/book-10.jpg" class="book-cover" alt="Book 10" loading="lazy" decoding="async"></a>
 
-    <a href="books/book-11.html"><img src="images/books/book-11.jpg" class="book-cover" alt="Book 11"></a>
-    <a href="books/book-12.html"><img src="images/books/book-12.jpg" class="book-cover" alt="Book 12"></a>
-    <a href="books/book-13.html"><img src="images/books/book-13.jpg" class="book-cover" alt="Book 13"></a>
-    <a href="books/book-14.html"><img src="images/books/book-14.jpg" class="book-cover" alt="Book 14"></a>
-    <a href="books/book-15.html"><img src="images/books/book-15.jpg" class="book-cover" alt="Book 15"></a>
-    <a href="books/book-16.html"><img src="images/books/book-16.jpg" class="book-cover" alt="Book 16"></a>
-    <a href="books/book-17.html"><img src="images/books/book-17.jpg" class="book-cover" alt="Book 17"></a>
-    <a href="books/book-18.html"><img src="images/books/book-18.jpg" class="book-cover" alt="Book 18"></a>
-    <a href="books/book-19.html"><img src="images/books/book-19.jpg" class="book-cover" alt="Book 19"></a>
-    <a href="books/book-20.html"><img src="images/books/book-20.jpg" class="book-cover" alt="Book 20"></a>
+    <a href="books/book-11.html" aria-label="Open Book 11"><img src="images/books/book-11.jpg" class="book-cover" alt="Book 11" loading="lazy" decoding="async"></a>
+    <a href="books/book-12.html" aria-label="Open Book 12"><img src="images/books/book-12.jpg" class="book-cover" alt="Book 12" loading="lazy" decoding="async"></a>
+    <a href="books/book-13.html" aria-label="Open Book 13"><img src="images/books/book-13.jpg" class="book-cover" alt="Book 13" loading="lazy" decoding="async"></a>
+    <a href="books/book-14.html" aria-label="Open Book 14"><img src="images/books/book-14.jpg" class="book-cover" alt="Book 14" loading="lazy" decoding="async"></a>
+    <a href="books/book-15.html" aria-label="Open Book 15"><img src="images/books/book-15.jpg" class="book-cover" alt="Book 15" loading="lazy" decoding="async"></a>
+    <a href="books/book-16.html" aria-label="Open Book 16"><img src="images/books/book-16.jpg" class="book-cover" alt="Book 16" loading="lazy" decoding="async"></a>
+    <a href="books/book-17.html" aria-label="Open Book 17"><img src="images/books/book-17.jpg" class="book-cover" alt="Book 17" loading="lazy" decoding="async"></a>
+    <a href="books/book-18.html" aria-label="Open Book 18"><img src="images/books/book-18.jpg" class="book-cover" alt="Book 18" loading="lazy" decoding="async"></a>
+    <a href="books/book-19.html" aria-label="Open Book 19"><img src="images/books/book-19.jpg" class="book-cover" alt="Book 19" loading="lazy" decoding="async"></a>
+    <a href="books/book-20.html" aria-label="Open Book 20"><img src="images/books/book-20.jpg" class="book-cover" alt="Book 20" loading="lazy" decoding="async"></a>
 
-    <a href="books/book-21.html"><img src="images/books/book-21.jpg" class="book-cover" alt="Book 21"></a>
-    <a href="books/book-22.html"><img src="images/books/book-22.jpg" class="book-cover" alt="Book 22"></a>
-    <a href="books/book-23.html"><img src="images/books/book-23.jpg" class="book-cover" alt="Book 23"></a>
-    <a href="books/book-24.html"><img src="images/books/book-24.jpg" class="book-cover" alt="Book 24"></a>
-    <a href="books/book-25.html"><img src="images/books/book-25.jpg" class="book-cover" alt="Book 25"></a>
-    <a href="books/book-26.html"><img src="images/books/book-26.jpg" class="book-cover" alt="Book 26"></a>
-    <a href="books/book-27.html"><img src="images/books/book-27.jpg" class="book-cover" alt="Book 27"></a>
+    <a href="books/book-21.html" aria-label="Open Book 21"><img src="images/books/book-21.jpg" class="book-cover" alt="Book 21" loading="lazy" decoding="async"></a>
+    <a href="books/book-22.html" aria-label="Open Book 22"><img src="images/books/book-22.jpg" class="book-cover" alt="Book 22" loading="lazy" decoding="async"></a>
+    <a href="books/book-23.html" aria-label="Open Book 23"><img src="images/books/book-23.jpg" class="book-cover" alt="Book 23" loading="lazy" decoding="async"></a>
+    <a href="books/book-24.html" aria-label="Open Book 24"><img src="images/books/book-24.jpg" class="book-cover" alt="Book 24" loading="lazy" decoding="async"></a>
+    <a href="books/book-25.html" aria-label="Open Book 25"><img src="images/books/book-25.jpg" class="book-cover" alt="Book 25" loading="lazy" decoding="async"></a>
+    <a href="books/book-26.html" aria-label="Open Book 26"><img src="images/books/book-26.jpg" class="book-cover" alt="Book 26" loading="lazy" decoding="async"></a>
+    <a href="books/book-27.html" aria-label="Open Book 27"><img src="images/books/book-27.jpg" class="book-cover" alt="Book 27" loading="lazy" decoding="async"></a>
 
   </div>
 
-</div>
+</main>
 
 <footer>
   © 2026 Life in Holy Bible · Know Truth · Walking in His Word ·
