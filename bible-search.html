@@ -34,6 +34,18 @@ body {
   padding: 40px 20px;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 h1 {
   text-align: center;
   color: #ffd700;
@@ -118,9 +130,7 @@ footer {
     Search the Holy Bible • King James Version
   </div>
 
-  <label for="searchInput" class="subtitle" style="display:block; margin-bottom:12px; opacity:0.9;">
-    Search words like faith, love, salvation…
-  </label>
+  <label for="searchInput" class="visually-hidden">Search words like faith, love, salvation…</label>
   <input
     id="searchInput"
     type="text"
@@ -128,7 +138,7 @@ footer {
     autocomplete="off"
     aria-describedby="searchHelp"
   />
-  <p id="searchHelp" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+  <p id="searchHelp" class="visually-hidden">
     Type at least two letters to search Bible verses.
   </p>
 
