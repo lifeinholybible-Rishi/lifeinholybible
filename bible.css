@@ -1,7 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    color: #1f1f1f;
+    background: #ffffff;
 }
 
 .container {
@@ -9,6 +16,8 @@ body {
     flex-direction: column; /* Change to column layout */
     align-items: center;
     padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .search-container {
@@ -16,23 +25,43 @@ body {
     flex-direction: column;
     align-items: center; /* Center horizontally */
     margin-bottom: 20px; /* Add margin to separate from content boxes */
+    width: 100%;
+    max-width: 720px;
 }
 
 #searchBox {
-    padding: 8px;
+    width: 100%;
+    padding: 12px 14px;
     margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #999;
+    border-radius: 8px;
+}
+
+#searchButton {
+    min-height: 42px;
+    padding: 10px 18px;
+    cursor: pointer;
+}
+
+#searchBox:focus-visible,
+#searchButton:focus-visible,
+a:focus-visible {
+    outline: 3px solid #7a5c00;
+    outline-offset: 3px;
 }
 
 #suggestions {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 100px;
+    max-height: 160px;
     overflow-y: auto;
+    width: 100%;
 }
 
 #suggestions li {
-    padding: 5px;
+    padding: 8px;
     cursor: pointer;
     border: 1px solid #ccc;
 }
@@ -42,12 +71,14 @@ body {
     flex-direction: row; /* Change to row layout */
     width: 100%;
     justify-content: center; /* Center content horizontally */
+    gap: 20px;
 }
 
 .original-content,
 .found-content {
     width: 50%; /* Take half of the container width */
     padding: 10px;
+    overflow-x: auto;
 }
 
 table {
@@ -59,8 +90,9 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
+    vertical-align: top;
 }
 
 caption {
@@ -69,6 +101,8 @@ caption {
     margin-bottom: 10px;
     border:red;
     background-color:black;
+    padding: 10px;
+    line-height: 1.6;
 }
 
 .highlight {
@@ -79,4 +113,43 @@ caption {
     color:maroon;
     margin-top: 20px;
 }
- 
+
+@media (max-width: 900px) {
+    .container {
+        padding: 12px;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .original-content,
+    .found-content {
+        width: 100%;
+        padding: 6px;
+    }
+
+    table {
+        min-width: 720px;
+    }
+
+    th, td {
+        padding: 9px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 520px) {
+    .container {
+        padding: 10px;
+    }
+
+    caption {
+        font-size: 15px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+}
